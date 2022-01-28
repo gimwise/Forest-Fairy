@@ -15,24 +15,24 @@
         <a href="/" class="header_logo">수피아</a>
         <nav>
             <ul class="nav justify-content-end">
-                <!-- {% if(loggedIn) %} -->
+                <!--  if(loggedIn) %} -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'toilet:add' %}">➕ 화장실 등록</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/info">내 정보</a>
+                    <a href="users/profile">내 정보</a>
                 </li>
                 <li class="nav-item">
                     <a href="/info/logout">로그아웃</a>
                 </li>
-                <!-- {% else %} -->
+                <!--  else %} -->
                 <li class="nav-item">
-                    <a href="/login">로그인</a>
+                    <a href="users/login">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/join">회원가입</a>
+                    <a href="users/join">회원가입</a>
                 </li>
-                <!-- {% endif %} -->
+                <!-- endif %} -->
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">소개</a>
                   </li>
@@ -41,6 +41,6 @@
     </header>
     
     {% block content %}
-    {% end block %}
+    {% endblock %}
 </body>
 </html>
