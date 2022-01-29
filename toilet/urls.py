@@ -9,5 +9,7 @@ app_name = 'toilet'
 urlpatterns = [
     path('',views.home,name='home'),
     path('add/',views.add, name='add'),
+    path('info/<int:id>',views.info, name='info'),
+    path("intro/", views.intro, name="intro"),
     path('admin/', admin.site.urls),
 ]

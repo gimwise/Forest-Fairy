@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
-{% block content %}
+{% load static %}
 
-    <section id="seePropfile">
+{% block title %}
+    <title>내 정보</title>    
+{% endblock %}
+
+{% block content %}
+    <section id="seeProfile">
         <div class="seeProfile__background">
             <div class="content__title">
                 <p id="nickname">{{user.nickname}}님</p>

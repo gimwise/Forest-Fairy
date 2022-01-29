@@ -2,8 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'home.html')
+def home(req):
+    return render(req, 'home.html')
 
-def add(request):
-    return render(request, 'toilet/add.html')
+def add(req):
+    return render(req, 'toilet/add.html')
+
+def info(req):
+    return render(req, 'toilet/info.html')
+
+def intro(req):
+    return render(req, 'toilet/intro.html')
