@@ -1,7 +1,8 @@
 from operator import truediv
 from tkinter.tix import TixSubWidget
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 
 # Create your models here.
 class ToiletInfo(models.Model):
