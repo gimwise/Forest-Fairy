@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+    <title>숲의 요정, 수피아</title>
+{% endblock %}
 {% block content %}
     <div id="map" style="width: 100vw; height: 100vh;"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb4ddc3805bfbd715140d63a08d376ff"></script>
@@ -13,5 +16,6 @@
         const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
         // 마커찍기
+
     </script>
 {% endblock %}
