@@ -20,19 +20,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'toilet:add' %}">➕ 화장실 등록</a>
                 </li>
-                <li class="nav-item">
-                    <a href="users/profile">내 정보</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/info/logout">로그아웃</a>
-                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:profile' user.id %}">내 정보</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logout' %}">로그아웃</a>
+                    </li>
+                {% endif %}
+
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:login' %}">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:join' %}">회원가입</a>
+                    </li>
+                {% endif %}
+
                 <!--  else %} -->
-                <li class="nav-item">
-                    <a href="users/login">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a href="users/join">회원가입</a>
-                </li>
+
                 <!-- endif %} -->
                 <li class="nav-item">
                     <a href="/intro">소개</a>

@@ -6,5 +6,35 @@
 {% endblock %}
 
 {% block content %}
-    프로필
+    <section id="seeProfile">
+        <div class="seeProfile__background">
+            <div class="content__title">
+                <p id="nickname">{{user.nickname}}님</p>
+            </div>
+            <div class="seeProfile__content">
+                <table class="customer_table">
+                    <tr>
+                        <th class="type">별명</th>
+                        <td class="content">{{user.nickname}}</td>
+                    </tr>
+                    <tr>
+                        <th class="type">성별</th>
+                        <td class="content">
+                            {% if user.gender == 1 %} 여자
+                            {% elif user.gender == 0 %} 남자
+                            {%endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="type">이메일</th>
+                        <td class="content">{{ user.email }}</td>
+                    </tr>
+                </table>
+                <div class="buttons">
+                    <a class="btn btn-primary disabled" href="#">프로필 편집</a>
+                    <a class="btn btn-primary disabled" href="#">비밀번호 변경</a>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
