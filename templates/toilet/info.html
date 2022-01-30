@@ -4,6 +4,51 @@
 <title>화장실 정보</title>
 {% endblock %}
 {% block content %}
-<h1> 화장실 정보입니다. </h1>
+<h1> {{ toilet.tname }}의 정보입니다. </h1>
+
+<p>{{ toilet.tlocation }}</p>
+<p>{{ toilet.tnumber }}</p>
+<p>{{ toilet.topen }}</p>
+
+{# 배지가 나오면 그때 그림으로 대체하면 될 듯 합니다 #}
+    {% if toilet.tbidget == True %}
+        <p>비데 있음</p>
+    {% elif toilet.tbidget == False %}
+        <p>비데 없음</p>
+    {% else %}
+        <p>비데 정보가 없음</p>
+    {% endif %}
+
+    {% if toilet.tpaper == True %}
+        <p>휴지 있음</p>
+    {% elif toilet.tpaper == False %}
+        <p>휴지 없음</p>
+    {% else %}
+        <p>휴지 정보가 없음</p>
+    {% endif %}
+
+    {% if toilet.tpassword == True %}
+        <p>비밀번호 있음</p>
+    {% elif toilet.tpassword == False %}
+        <p>비밀번호 없음</p>
+    {% else %}
+        <p>비밀번호 정보가 없음</p>
+    {% endif %}
+
+    {% if toilet.tpublic == True %}
+        <p>남녀분리</p>
+    {% elif toilet.tpublic == False %}
+        <p>남녀분리 노놉</p>
+    {% else %}
+        <p>남녀분리 정보가 없음</p>
+    {% endif %}
+
+    {% if toilet.ttype == 0 %}
+        <p>푸세식</p>
+    {% elif toilet.ttype == 1 %}
+        <p>좌변식</p>
+    {% else %}
+        <p>푸세식 vs 좌변식 정보가 없음</p>
+    {% endif %}
 
 {% endblock %}
