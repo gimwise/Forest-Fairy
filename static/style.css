@@ -1,0 +1,119 @@
+.container p {
+  margin-top: 100px;
+}
+.nav-logo {
+  color: #1cc979;
+  text-decoration: none;
+}
+.nav-item {
+  margin: 5px 0px;
+}
+.navd {
+  width: 80%;
+  display: inline-block;
+  float: right;
+  margin-right: 50px;
+}
+.n {
+  float: right;
+  list-style: none;
+  margin: 0px;
+}
+.n li {
+  float: left;
+}
+.nav-item a {
+  color: rgb(66, 66, 66);
+  size: 20px;
+}
+.nav-item a:hover {
+  color: #1cc979;
+  size: 20px;
+}
+.logo {
+  display: inline-block;
+  line-height: 50px;
+  vertical-align: top;
+  margin-left: 50px;
+}
+
+.log-img {
+  width: 30px;
+  height: 30px;
+}
+
+.toilet-info1 {
+  --content-width: calc(var(--column-count) * 120);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: calc(var(--row-count) * 120);
+  width: calc(var(--content-width) + 12px);
+}
+
+.tinfo {
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  opacity: 1;
+  outline: none;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 300ms;
+  transition-property: left, top;
+  transition-timing-function: ease-in-out;
+  user-select: none;
+  width: 120px;
+}
+.tinfo-icon {
+  align-items: center;
+  background-color: rgb(236, 236, 236);
+  border-radius: 50%;
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  justify-content: center;
+  margin-top: 16px;
+  width: 50px;
+}
+.tinfo-title {
+  align-items: center;
+  border-radius: 62px;
+  display: flex;
+  height: 120px;
+  line-height: 40px;
+  margin-top: 6px;
+  padding: 2px 8px;
+  width: 88px;
+}
+.tinfo-title span {
+  font-weight: 400;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  color: rgb(66, 66, 66);
+  font-size: 13px;
+}
+
+#tfinfo_form {
+  align-items: center;
+  position: relative;
+}
+#exampleFormControlInput1 {
+  width: 550px;
+  margin: 0 auto;
+}
+#doneBtn {
+  width: 150px;
+  margin: 0 auto;
+}
+.tinput {
+  margin-top: 100px;
+}
