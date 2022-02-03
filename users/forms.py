@@ -8,35 +8,35 @@ class UserForm(UserCreationForm):
     year = timezone.now().year
     years = [x for x in range(1970, year + 1)]
     username = UsernameField(
-        label='ID',
+        label='',
         widget=forms.TextInput(attrs={
             'autofocus': True,
-            'placeholder': '',
+            'placeholder': '아이디',
             'class': 'register_idForm'
         }))
     password1 = forms.CharField(
-        label='비밀번호',
+        label='',
         widget=forms.PasswordInput(attrs={
-            'placeholder': '',
+            'placeholder': '비밀번호',
             'class': 'register_pwForm'
         }))
     password2 = forms.CharField(
-        label='비밀번호 확인',
+        label='',
         widget=forms.PasswordInput(attrs={
-            'placeholder': '',
+            'placeholder': '비밀번호 확인',
             'class': 'register_pwcheckForm'
         }))
     email = forms.EmailField(
-        label='이메일',
-        widget=forms.EmailInput(attrs={'class': 'register_emailForm'}))
+        label='',
+        widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'register_emailForm'}))
     nickname = forms.CharField(
-        label='별명',
-        widget=forms.TextInput(attrs={'class': 'register_nicknameForm'}))
+        label='',
+        widget=forms.TextInput(attrs={'placeholder': '닉네임', 'class': 'register_nicknameForm'}))
     birthdate = forms.DateField(label='생년월일',
                                 widget=forms.SelectDateWidget(
                                     years=years,
                                     attrs={
-                                        'class': 'register_birthForm',
+                                        'class': 'register_birthForm col-3',
                                         'default': 1990
                                     }))
     gender = forms.ChoiceField(

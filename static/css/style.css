@@ -1,3 +1,4 @@
+
 html,body{
   width:100%;
   height:100%;
@@ -16,4 +17,139 @@ header{
 
 .nav-item {
   margin: 5px 10px;
+}
+.login {
+  width:100%;
+	height:100%;
+	margin: 0;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+  background-repeat: no-repeat;
+  background: rgba(0, 0, 0, 0);
+  
+}
+.login h4{
+  font-weight:bold; 
+  text-align:center; 
+  margin-top:10%;
+  margin-bottom: 10%;
+}
+
+.login_container{
+  width: 400px;
+  padding: 30px 35px 30px 35px;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0.5em;
+}
+
+.login_form-group {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  height:45px;
+}
+#login{
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width:100%;
+  height:45px;
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+
+	font-size: 18px;
+	background: #1cc979;
+
+}
+
+.join {
+  width:100%;
+	height:100%;
+	margin: 0;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+  background-repeat: no-repeat;
+  background: rgba(0, 0, 0, 0); 
+}
+.join_container{
+  width: 400px;
+  padding: 30px 35px 30px 35px;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0.5em;
+}
+
+.join h4{
+  font-weight:bold; 
+  text-align:center; 
+  margin-top:10%;
+  margin-bottom: 10%;
+}
+.register_idForm,.register_pwForm, .register_pwcheckForm, .register_emailForm, .register_nicknameForm, .register_genderForm{
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  position: relative;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 0.3em;
+  margin-bottom: -5px;
+}
+.register_birthForm, .col-3{
+  display:inline;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  margin-bottom: -10px;
+  position: relative;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-left: 3px;
+  font-size: 16px;
+  border-radius: 0.3em;
+}
+#join{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  height:45px;
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+	font-size: 18px;
+	background: #1cc979;
 }
