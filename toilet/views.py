@@ -7,3 +7,6 @@ def home(request):
 
 def add(request):
     return render(request, 'toilet/add.html')
+
+def about(request):
+    return render(request, 'toilet/about.html')
