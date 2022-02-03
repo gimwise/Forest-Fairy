@@ -23,8 +23,5 @@ def info(request, id):
     context = {'toilet' : toilet}
     return render(request, 'toilet/info.html', context)
 
-def add(request):
-    return render(request, 'toilet/add.html')
-
-def about(request):
-    return render(request, 'toilet/about.html')
+def intro(req):
+    return render(req, 'toilet/intro.html')

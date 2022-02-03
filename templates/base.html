@@ -34,7 +34,7 @@
                 </li>
                 {# endif #}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'toilet:about' %}">소개</a>
+                    <a class="nav-link" href="{% url 'toilet:intro' %}">소개</a>
                 </li>
                 <li class="nav-item dropdown">
                   
@@ -44,14 +44,14 @@
                     <li><a class="dropdown-item" href="#">내가쓴리뷰</a></li>
                     <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/info/logout">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="{% url 'user:logout' %}">로그아웃</a></li>
                 </ul>
                     {%else%}
                     <li class="nav-item">
-                        <a class="nav-link" href="users/login">로그인</a>
+                        <a class="nav-link" href="{% url 'users:login' %}">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="users/join">회원가입</a>
+                        <a class="nav-link" href="{% url 'users:join' %}">회원가입</a>
                     </li>
                     {% endif %}
                 
