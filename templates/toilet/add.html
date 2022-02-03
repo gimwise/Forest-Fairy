@@ -6,6 +6,57 @@
 {% endblock %}
 
 {% block content %}
-<h1> 등록페이지입니다. </h1>
+<div class="container mt-4" id="tfinfo_form">
+    <h5>화장실 정보를 입력해주세요</h5>
+    <div class="tinput">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="주소를 입력해주세요">
+    </div>
+
+    <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
+        <a href="" class="tinfo">
+            <div class='tinfo-icon'>
+                <img src="" alt="">
+            </div>
+            <div class="tinfo-title">
+                <span>남여분리</span>
+            </div>
+        </a>
+        <a href="" class="tinfo">
+            <div class='tinfo-icon'>
+                <img src="" alt="">
+            </div>
+            <div class="tinfo-title">
+                <span>비밀번호</span>
+            </div>
+        </a>
+        <a href="" class="tinfo">
+            <div class='tinfo-icon'>
+                <img src="" alt="">
+            </div>
+            <div class="tinfo-title">
+                <span>휴지비치</span>
+            </div>
+        </a>
+        <a href="" class="tinfo">
+            <div class='tinfo-icon'>
+                <img src="" alt="">
+            </div>
+            <div class="tinfo-title">
+                <span>좌변기</span>
+            </div>
+        </a>
+        <a href="" class="tinfo">
+            <div class='tinfo-icon'>
+                <img src="" alt="">
+            </div>
+            <div class="tinfo-title">
+                <span>비데</span>
+            </div>
+        </a>
+    </div> 
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-success mt-5" id="doneBtn" type="button">완료</button>
+    </div>
+</div>
 
 {% endblock %}
