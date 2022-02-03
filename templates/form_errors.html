@@ -2,7 +2,13 @@
     {% for field in form %}
         {% for error in field.errors %}
             <div class="alert alert-danger">
-                <strong>{{ field.label }}</strong>
+                <strong>
+                    {% if field.label == 'ID' %}
+                        아이디
+                    {% else %}
+                        {{ field.label }}
+                    {% endif %}
+                </strong>
                 {{ error }}
             </div>
         {% endfor %}
