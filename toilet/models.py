@@ -12,8 +12,8 @@ class ToiletInfo(models.Model):
     TTYPE_CHOICE = [(squat, '푸세식'), (toilet, '좌변식')]
     tname=models.CharField(max_length=200,null=True)
     tlocation=models.CharField(max_length=300,null=True)
-    tlat = models.FloatField(null=True)
-    tlong = models.FloatField(null=True)
+    tlat = models.FloatField(null=True) #위도
+    tlong = models.FloatField(null=True) #경도
     tnumber=models.CharField(max_length=200,null=True)
     topen=models.CharField(max_length=200,null=True)
     tbidget=models.BooleanField(null=True)
