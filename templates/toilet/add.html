@@ -7,66 +7,67 @@
 
 {% block content %}
 <div class="container mt-4" id="tfinfo_form">
-    <h5>화장실 정보를 입력해주세요</h5>
-    <h3 id="placeLat">위도</h3>
-    <h3 id="placeLng">경도</h3>
+    <form action="{% url 'toilet:add' %}" method="POST">
+        {% csrf_token %}
+        <h5>화장실 정보를 입력해주세요</h5>
+        <h3 id="placeLat">위도</h3>
+        <h3 id="placeLng">경도</h3>
+        <h3 id="address">주소</h3>
+        
+        <div class="tinput">
+            <input name="tlocation" type="text" class="form-control" id="exampleFormControlInput1" placeholder="건물 내 화장실 위치를 입력해주세요">
+        </div>
     
-    <div class="tinput">
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="주소를 입력해주세요">
-    </div>
-
-    <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
-        <a href="" class="tinfo">
-            <div class='tinfo-icon'>
-                <img src="" alt="">
+        <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
+            <div>
+                <label><input type="checkbox" id="tpublic" name="tpublic">남여분리</label>
+                <label for="tpublic" class='tinfo-icon'>
+                    <img src="" alt="">
+                </label>
             </div>
-            <div class="tinfo-title">
-                <span>남여분리</span>
+            
+            <div>
+                <label><input type="checkbox" id="tpassword" name="tpassword">비밀번호</label>
+                <label for="tpassword" class='tinfo-icon'>
+                    <img src="" alt="">
+                </label>
             </div>
-        </a>
-        <a href="" class="tinfo">
-            <div class='tinfo-icon'>
-                <img src="" alt="">
+            
+            <div>
+                <label><input type="checkbox" id="tpaper" name="tpaper">휴지비치</label>
+                <label for="tpaper" class='tinfo-icon'>
+                    <img src="" alt="">
+                </label>
             </div>
-            <div class="tinfo-title">
-                <span>비밀번호</span>
+            
+            <div>
+                <label><input type="checkbox" id="ttype" name="ttype">좌변기</label>
+                <label for="ttype" class='tinfo-icon'>
+                    <img src="" alt="">
+                </label>
             </div>
-        </a>
-        <a href="" class="tinfo">
-            <div class='tinfo-icon'>
-                <img src="" alt="">
+            
+            <div>
+                <label><input type="checkbox" id="tbidget" name="tbidget">비데</label>
+                <label for="tbidget" class='tinfo-icon'>
+                    <img src="" alt="">
+                </label>
             </div>
-            <div class="tinfo-title">
-                <span>휴지비치</span>
-            </div>
-        </a>
-        <a href="" class="tinfo">
-            <div class='tinfo-icon'>
-                <img src="" alt="">
-            </div>
-            <div class="tinfo-title">
-                <span>좌변기</span>
-            </div>
-        </a>
-        <a href="" class="tinfo">
-            <div class='tinfo-icon'>
-                <img src="" alt="">
-            </div>
-            <div class="tinfo-title">
-                <span>비데</span>
-            </div>
-        </a>
-    </div> 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-success mt-5" id="doneBtn" type="button">완료</button>
-    </div>
+        </div> 
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <input class="btn btn-success mt-5" id="doneBtn" type="submit" value="완료">
+        </div>
+    </form>
 </div>
 <script>
     // 클릭한 마커의 위도, 경도 정보 받아옴
+    console.log(localStorage)
     result=JSON.parse(localStorage.getItem("placeLocation"));
     
     document.getElementById('placeLat').innerHTML=result.La;
     document.getElementById('placeLng').innerHTML=result.Ma;
+    console.log(result);
+    // document.getElementById('address').innerHTML=result.;
 
 </script>
 
