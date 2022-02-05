@@ -8,6 +8,9 @@
 {% block content %}
 <div class="container mt-4" id="tfinfo_form">
     <h5>화장실 정보를 입력해주세요</h5>
+    <h3 id="placeLat">위도</h3>
+    <h3 id="placeLng">경도</h3>
+    
     <div class="tinput">
         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="주소를 입력해주세요">
     </div>
@@ -58,5 +61,13 @@
         <button class="btn btn-success mt-5" id="doneBtn" type="button">완료</button>
     </div>
 </div>
+<script>
+    // 클릭한 마커의 위도, 경도 정보 받아옴
+    result=JSON.parse(localStorage.getItem("placeLocation"));
+    
+    document.getElementById('placeLat').innerHTML=result.La;
+    document.getElementById('placeLng').innerHTML=result.Ma;
+
+</script>
 
 {% endblock %}

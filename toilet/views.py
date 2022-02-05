@@ -1,17 +1,47 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ToiletInfo
+from django.db.models import Avg
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+import json
 
 # Create your views here.
-
 def getJson(request):
     toilet_list = ToiletInfo.objects.all()
-    toilet_json = serializers.serialize('json', toilet_list)
-    return HttpResponse(toilet_json, content_type="text/json-comment-filtered")
+    toilets = []
+    for toilet in toilet_list :
+        dict = {
+                'pk' : toilet.id,
+                'tname': toilet.tname,
+                'tlocation' : toilet.tlocation,
+                'tlat' : toilet.tlat,
+                'tlong' : toilet.tlong,
+                'tnumber' : toilet.tnumber,
+                'topen' : toilet.topen,
+                'tbidget' : toilet.tbidget,
+                'tpaper' : toilet.tpaper,
+                'tpassword' : toilet.tpassword,
+                'tpublic' : toilet.tpublic,
+                'ttype' : toilet.ttype,
+                'avg': toilet.comment_set.aggregate(avg=Avg('score'))
+                }
+        # toilet_json.append(json.dumps(dict, ensure_ascii=False))
+        toilets.append(dict)
+    toilet_json = json.dumps(toilets)
+    return HttpResponse(toilet_json, content_type="text/json-comment-filtered; charset=utf-8")
+
+def getScore(request):
+    toilet_list = ToiletInfo.objects.all()
+    toilet_score_avg = []
+    for toilet in toilet_list :
+        dict = {'tname': toilet.tname, 'avg': toilet.comment_set.aggregate(avg=Avg('score'))}
+        toilet_score_avg.append(json.dumps(dict, ensure_ascii=False))
+    return HttpResponse(content=toilet_score_avg, content_type="text/json-comment-filtered; charset=utf-8")
+
 
 def home(request):
     toilet_list = ToiletInfo.objects.all()
+
     context = {'toilet_list' : toilet_list}
     return render(request, 'home.html', context)
 

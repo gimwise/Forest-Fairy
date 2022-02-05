@@ -10,7 +10,11 @@ class ToiletAdmin(ImportExportMixin,admin.ModelAdmin):
     search_fields = ['tname']
 
 class CommentAdmin(admin.ModelAdmin):
-    search_fields = ('author', 'tname')
+    list_display = ('get_tname', 'score', 'author')
+    search_fields = ['author']
+
+    def get_tname(self, obj):
+        return obj.toilet.tname
 
 admin.site.register(ToiletInfo,ToiletAdmin)
 admin.site.register(Comment, CommentAdmin)

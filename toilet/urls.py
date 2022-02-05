@@ -12,4 +12,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('getJson/', views.getJson, name='getJson'),
+    path('getScore/', views.getScore, name='getScore'),
 ]
