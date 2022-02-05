@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import ToiletInfo
 from django.db.models import Avg
 from django.core import serializers
@@ -46,7 +46,18 @@ def home(request):
     return render(request, 'home.html', context)
 
 def add(req):
-    return render(req, 'toilet/add.html')
+    if req.method=="POST":
+        post= ToiletInfo()
+        post.tlocation = req.POST["tlocation"]
+        post.tpublic = True if req.POST.get('tpublic',False) else False 
+        post.tpassword = True if req.POST.get('tpassword',False) else False
+        post.tpaper = True if req.POST.get('tpaper',False) else False
+        post.ttype = True if req.POST.get('ttype',False) else False
+        post.tbidget = True if req.POST.get('tbidget',False) else False
+        post.save()
+        return redirect('toilet:info',post.id)
+    else:                       
+        return render(req, 'toilet/add.html')
 
 def info(request, id):
     toilet = get_object_or_404(ToiletInfo, pk=id)

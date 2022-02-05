@@ -29,7 +29,7 @@ class ToiletInfo(models.Model):
 
 class Comment(models.Model):
     score=models.IntegerField(null=True)
-    author =  models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     toilet = models.ForeignKey(ToiletInfo, related_name= 'comment_set', on_delete=models.CASCADE)
 
     def __str__(self):
