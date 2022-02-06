@@ -104,7 +104,8 @@
     $.ajax({
         url : "{% url 'toilet:getJson' %}",
         dataType : "json",
-        success : function(positions){
+        success :
+            function(positions){
             for(var i =0 ; i<positions.length; i++){
                 // 마커 이미지의 이미지 크기
                 var imageSize = new kakao.maps.Size(35, 35);
@@ -147,10 +148,10 @@
 
 
                 kakao.maps.event.addListener(marker, 'click', function(){
-                    let index = positions.findIndex((item, index)=>{
-                        return item.tname === this.getTitle();
+                    let mark = positions.filter(e=>{
+                        return e.tname === marker.getTitle();
                     });
-                    index += 1
+                    let index = mark[0].pk;
                     let url = window.location.href + index;
                     location.href = url;
                 });
@@ -239,7 +240,7 @@
 
             // 마커를 생성하고 지도에 표시합니다
             var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-                marker = addMarker(placePosition, i), 
+                marker = addMarker(placePosition, i, places[i].place_name, places[i].address_name),
                 itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
             // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -303,7 +304,7 @@
     }
 
     // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-    function addMarker(position, idx, title) {
+    function addMarker(position, idx, title, address) {
         var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
             imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
             imgOptions =  {
@@ -314,7 +315,8 @@
             markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
                 marker = new kakao.maps.Marker({
                 position: position, // 마커의 위치
-                image: markerImage 
+                image: markerImage,
+                title : title,
             });
         
         // 마커를 클릭하면 화장실 등록페이지로 이동
@@ -322,8 +324,11 @@
             let result=confirm("화장실을 등록하시겠습니까?");
             if (result){
                 let placeLocation=position;
+                let tname = title;
+                let taddress = address;
                 localStorage.setItem("placeLocation",JSON.stringify(placeLocation));
-            
+                localStorage.setItem("tname",JSON.stringify(tname));
+                localStorage.setItem("taddress",JSON.stringify(taddress));
                 location.href = '/add/';
             } 
             

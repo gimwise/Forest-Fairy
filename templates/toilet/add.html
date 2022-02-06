@@ -10,51 +10,49 @@
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
         <h5>화장실 정보를 입력해주세요</h5>
-        <input type="hidden" id="placeLat" name="tlat" value="위도">
-        <input type="hidden" id="placeLng" name="tlong" value="경도">
-        <!-- <input type="hidden" id="taddress" name="taddress" value=""> -->
-        <!-- <input type="hidden" id="tname" name="tname" value=""> -->
-        
-        <div class="tinput">
-            <input name="tlocation" type="text" class="form-control" id="exampleFormControlInput1" placeholder="건물 내 화장실 위치를 입력해주세요">
-        </div>
-    s
+
+        {% for field in form %}
+            <div class="form-group">
+                <label>{{ field.label_tag }}</label>
+                {{ field }}
+            </div>
+
+        {% endfor %}
+
         <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
             <div>
-                <label><input type="checkbox" id="tpublic" name="tpublic">남여분리</label>
-                <label for="tpublic" class='tinfo-icon'>
+                <label>비데</label>
+                <label for="tbidget" class='tinfo-icon' id="tbidgetBtn">
                     <img src="" alt="">
                 </label>
             </div>
-            
             <div>
-                <label><input type="checkbox" id="tpassword" name="tpassword">비밀번호</label>
-                <label for="tpassword" class='tinfo-icon'>
+                <label>휴지 비치</label>
+                <label for="tpaper" class='tinfo-icon' id="tpaperBtn">
                     <img src="" alt="">
                 </label>
             </div>
-            
             <div>
-                <label><input type="checkbox" id="tpaper" name="tpaper">휴지비치</label>
-                <label for="tpaper" class='tinfo-icon'>
+                <label>비밀번호</label>
+                <label for="tpassword" class='tinfo-icon' id="tpasswordBtn">
                     <img src="" alt="">
                 </label>
             </div>
-            
             <div>
-                <label><input type="checkbox" id="ttype" name="ttype">좌변기</label>
-                <label for="ttype" class='tinfo-icon'>
+                <label>남여분리</label>
+                <label for="tpublic" class='tinfo-icon' id="tpublicBtn">
                     <img src="" alt="">
                 </label>
             </div>
-            
             <div>
-                <label><input type="checkbox" id="tbidget" name="tbidget">비데</label>
-                <label for="tbidget" class='tinfo-icon'>
+                <label>좌변기</label>
+                <label for="ttype" class='tinfo-icon' id="ttypeBtn">
                     <img src="" alt="">
                 </label>
             </div>
-        </div> 
+
+
+        </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <input class="btn btn-success mt-5" id="doneBtn" type="submit" value="완료">
         </div>
@@ -65,9 +63,77 @@
     console.log(localStorage)
     result=JSON.parse(localStorage.getItem("placeLocation"));
     
-    document.getElementById('placeLat').value=result.La;
-    document.getElementById('placeLng').value=result.Ma;
-    // document.getElementById('address').innerHTML=result.;
+    document.getElementById('id_tlat').value=result.Ma;
+    document.getElementById('id_tlong').value=result.La;
+    document.getElementById('id_tname').value=JSON.parse(localStorage.getItem("tname"));
+    document.getElementById('id_tlocation').value=JSON.parse(localStorage.getItem("taddress"));
+    // document.getElementById('address').innerHTML=result;
+
+
+    // 비데
+    const tbidgetInput = document.getElementById('id_tbidget');
+    const tbidgetBtn = document.getElementById('tbidgetBtn');
+    // 휴지
+    const tpaperInput = document.getElementById('id_tpaper');
+    const tpaperBtn = document.getElementById('tpaperBtn');
+    // 비밀번호
+    const tpasswordInput = document.getElementById('id_tpassword');
+    const tpasswordBtn = document.getElementById('tpasswordBtn');
+    // 남녀분리
+    const tpublicInput = document.getElementById('id_tpublic');
+    const tpublicBtn = document.getElementById('tpublicBtn');
+    // 변기
+    const ttypeInput = document.getElementById('id_ttype');
+    const ttypeBtn = document.getElementById('ttypeBtn');
+
+    tbidgetBtn.addEventListener("click", ()=>{
+        let currentOption = tbidgetInput.options.selectedIndex;
+        if(currentOption == 2){
+            tbidgetInput.options.selectedIndex = 0;
+        }
+        else {
+            tbidgetInput.options.selectedIndex++;
+        }
+    });
+    tpaperBtn.addEventListener("click", ()=>{
+        let currentOption = tpaperInput.options.selectedIndex;
+        if(currentOption == 2){
+            tpaperInput.options.selectedIndex = 0;
+        }
+        else {
+            tpaperInput.options.selectedIndex++;
+        }
+    });
+    tpasswordBtn.addEventListener("click", ()=>{
+        let currentOption = tpasswordInput.options.selectedIndex;
+        if(currentOption == 2){
+            tpasswordInput.options.selectedIndex = 0;
+        }
+        else {
+            tpasswordInput.options.selectedIndex++;
+        }
+    });
+    tpublicBtn.addEventListener("click", ()=>{
+        let currentOption = tpublicInput.options.selectedIndex;
+        if(currentOption == 2){
+            tpublicInput.options.selectedIndex = 0;
+        }
+        else {
+            tpublicInput.options.selectedIndex++;
+        }
+    });
+    ttypeBtn.addEventListener("click", ()=>{
+        let currentOption = ttypeInput.options.selectedIndex;
+        if(currentOption == 2){
+            ttypeInput.options.selectedIndex = 0;
+        }
+        else {
+            ttypeInput.options.selectedIndex++;
+        }
+    });
+
+
+
 
 </script>
 
