@@ -50,6 +50,7 @@ def add(req):
         post= ToiletInfo()
         post.tlat = req.POST["tlat"]
         post.tlong = req.POST["tlong"]
+        post.tname = req.POST["tname"]
         post.tlocation = req.POST["tlocation"]
         post.tpublic = True if req.POST.get('tpublic',False) else False 
         post.tpassword = True if req.POST.get('tpassword',False) else False
@@ -57,7 +58,7 @@ def add(req):
         post.ttype = True if req.POST.get('ttype',False) else False
         post.tbidget = True if req.POST.get('tbidget',False) else False
         post.save()
-        return redirect('/')
+        return redirect('toilet:info',post.id)
     else:                       
         return render(req, 'toilet/add.html')
 
