@@ -5,10 +5,12 @@
 {% endblock %}
 {% block content %}
 <h1> {{ toilet.tname }}의 화장실 정보입니다. </h1>
-
-<p>{{ toilet.tlocation }}</p>
-<p>{{ toilet.tnumber }}</p>
-<p>{{ toilet.topen }}</p>
+<p>
+    리뷰 : {몇} 명, {몇} 점 
+</p>
+<p>🚩 {{ toilet.tlocation }}</p>
+<p>📳 {{ toilet.tnumber }}</p>
+<p>⏰ {{ toilet.topen }}</p>
 
 <!-- {# 배지가 나오면 그때 그림으로 대체하면 될 듯 합니다 #} -->
     {% if toilet.tbidget == True %}
@@ -52,5 +54,18 @@
     {% endif %}
     
     <!-- review starts here -->
-    <form action="{% url 'toilet:info'}"></form>
+    <div class="row">
+        <div class="col text-center">
+            <form class="rate-form" action="{% url 'toilet:info'}" method="POST" id="{{object.id}}">
+                {% csrf_token %}
+                <button type="submit" class="fa fa-star fa-3x my-btn" id="first"></button>
+                <button type="submit" class="fa fa-star fa-3x my-btn" id="second"></button>
+                <button type="submit" class="fa fa-star fa-3x my-btn" id="third"></button>
+                <button type="submit" class="fa fa-star fa-3x my-btn" id="fourth"></button>
+                <button type="submit" class="fa fa-star fa-3x my-btn" id="fifth"></button>
+            </form>
+            <br>
+            <div id="confirm-box"></div>
+        </div>
+    </div>
 {% endblock %}
