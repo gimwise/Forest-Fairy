@@ -9,17 +9,18 @@
 <div class="container mt-4" id="tfinfo_form">
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
+        <h4 id="title_tname">화장실 이름</h4>
         <h5>화장실 정보를 입력해주세요</h5>
-        <input type="hidden" id="placeLat" name="tlat" value="위도">
-        <input type="hidden" id="placeLng" name="tlong" value="경도">
-        <!-- <input type="hidden" id="taddress" name="taddress" value=""> -->
-        <!-- <input type="hidden" id="tname" name="tname" value=""> -->
-        
+        <input id="placeLat" name="tlat" value="위도" style="display: none;">
+        <input id="placeLng" name="tlong" value="경도" style="display: none;">
+        <input id="tlocation" name="tlocation" value="주소" style="display: none;">
+        <input id="tname" name="tname" value="이름" style="display: none;">
+
         <div class="tinput">
-            <input name="tname" type="text" class="form-control" id="exampleFormControlInput1" placeholder="화장실 이름을 입력해주세요">
-            <input name="tlocation" type="text" class="form-control" id="exampleFormControlInput1" placeholder="건물 내 화장실 위치를 입력해주세요">
+            <input name="tlocationInBuilding" type="text" class="form-control" id="exampleFormControlInput1" placeholder="건물 내 화장실 위치를 입력해주세요">
         </div>
     
+
         <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
             <div>
                 <label><input type="checkbox" id="tpublic" name="tpublic">남여분리</label>
@@ -63,12 +64,15 @@
 </div>
 <script>
     // 클릭한 마커의 위도, 경도 정보 받아옴
-    console.log(localStorage)
     result=JSON.parse(localStorage.getItem("placeLocation"));
+    placeName=JSON.parse(localStorage.getItem("placeName"));
+    placeAddr=JSON.parse(localStorage.getItem("placeAddr"));
     
     document.getElementById('placeLat').value=result.La;
     document.getElementById('placeLng').value=result.Ma;
-    // document.getElementById('address').innerHTML=result.;
+    document.getElementById('tlocation').value=placeAddr;
+    document.getElementById('tname').value=placeName;
+    document.getElementById('title_tname').innerText=placeName;
 
 </script>
 
