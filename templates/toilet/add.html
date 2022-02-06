@@ -9,12 +9,11 @@
 <div class="container mt-4" id="tfinfo_form">
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
-        <h4 id="title_tname">화장실 이름</h4>
+        <input id="tname" name="tname" value="화장실이름">
         <h5>화장실 정보를 입력해주세요</h5>
         <input id="placeLat" name="tlat" value="위도" style="display: none;">
         <input id="placeLng" name="tlong" value="경도" style="display: none;">
         <input id="tlocation" name="tlocation" value="주소" style="display: none;">
-        <input id="tname" name="tname" value="이름" style="display: none;">
 
         <div class="tinput">
             <input name="tlocationInBuilding" type="text" class="form-control" id="exampleFormControlInput1" placeholder="건물 내 화장실 위치를 입력해주세요">
@@ -72,7 +71,6 @@
     document.getElementById('placeLng').value=result.Ma;
     document.getElementById('tlocation').value=placeAddr;
     document.getElementById('tname').value=placeName;
-    document.getElementById('title_tname').innerText=placeName;
 
 </script>
 
