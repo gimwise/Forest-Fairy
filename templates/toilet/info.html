@@ -4,13 +4,13 @@
 <title>화장실 정보</title>
 {% endblock %}
 {% block content %}
-<h1> {{ toilet.tname }}의 정보입니다. </h1>
+<h1> {{ toilet.tname }}의 화장실 정보입니다. </h1>
 
 <p>{{ toilet.tlocation }}</p>
 <p>{{ toilet.tnumber }}</p>
 <p>{{ toilet.topen }}</p>
 
-{# 배지가 나오면 그때 그림으로 대체하면 될 듯 합니다 #}
+<!-- {# 배지가 나오면 그때 그림으로 대체하면 될 듯 합니다 #} -->
     {% if toilet.tbidget == True %}
         <p>비데 있음</p>
     {% elif toilet.tbidget == False %}
@@ -52,5 +52,5 @@
     {% endif %}
     
     <!-- review starts here -->
-
+    <form action="{% url 'toilet:info'}"></form>
 {% endblock %}
