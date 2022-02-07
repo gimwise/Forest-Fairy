@@ -1,56 +1,88 @@
-{% extends '../base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}
 <title>화장실 정보</title>
 {% endblock %}
 {% block content %}
-<h1> {{ toilet.tname }}의 화장실 정보입니다. </h1>
+<div id="info" style="  width: 55rem; height: 35em; padding: 50px 30px;;
+  margin: 0 auto; /* Added */ float: none; /* Added */
+  margin-bottom: 10px; /* Added */ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   padding-left: 100px;padding-right: 100px; position: relative;  border: double 8px; border-color: #1cc979;">
+    <div id="info_container">
+        <div class="sub">
+            <h1 style="text-align: center;">"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
+                <img src="/static/img/fairy.png" style="width: 35px; margin:0 0 20px -5px;">
+            </h1><br>
+            <p>{{ toilet.tlocation }}</p>
+            <p>{{ toilet.tnumber }}</p>
+            <p>{{ toilet.topen }}</p>
+        </div>
+        <hr size="3.5"  style="margin-top: 30px;">   
+        <div class="info_badge">
+        <h5 style="margin-left: 25px; font-weight: 700; margin-bottom: 20px;">화장실 정보</h5>
+            <!-- {# 배지가 나오면 그때 그림으로 대체하면 될 듯 합니다 #} -->
+             <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 25px;">
+                {% if toilet.tbidget == True %}
+                    <img src="/static/img/badge/bidet.png" style="width:100px;   margin-bottom: 10px;">
+                    <text ">비데 O</text>
+                {% elif toilet.tbidget == False %}
+                    <img src="/static/img/badge/bidet_N.png" style="width:100px;   margin-bottom: 10px;">
+                    <text style="color: gray;">비데 X</text>                
+                {% else %}
+                <p>비데 정보가 없음</p>
+                {% endif %}
+            </div>
 
-<p>{{ toilet.tlocation }}</p>
-<p>{{ toilet.tnumber }}</p>
-<p>{{ toilet.topen }}</p>
+            <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
+                {% if toilet.tpaper == True %}
+                    <img src="/static/img/badge/tissue.png" style="width:100px; margin-bottom: 10px;">
+                    <text>휴지 O</text>
+                {% elif toilet.tpaper == False %}
+                    <img src="/static/img/badge/tissue_N.png" style="width:100px; margin-bottom: 10px;">
+                    <text style="color: gray;">휴지 X</text>
+                {% else %}
+                <p>휴지 정보가 없음</p>
+                {% endif %}
+            </div>
 
-<!-- {# 배지가 나오면 그때 그림으로 대체하면 될 듯 합니다 #} -->
-    {% if toilet.tbidget == True %}
-        <p>비데 있음</p>
-    {% elif toilet.tbidget == False %}
-        <p>비데 없음</p>
-    {% else %}
-        <p>비데 정보가 없음</p>
-    {% endif %}
-
-    {% if toilet.tpaper == True %}
-        <p>휴지 있음</p>
-    {% elif toilet.tpaper == False %}
-        <p>휴지 없음</p>
-    {% else %}
-        <p>휴지 정보가 없음</p>
-    {% endif %}
-
-    {% if toilet.tpassword == True %}
-        <p>비밀번호 있음</p>
-    {% elif toilet.tpassword == False %}
-        <p>비밀번호 없음</p>
-    {% else %}
-        <p>비밀번호 정보가 없음</p>
-    {% endif %}
-
-    {% if toilet.tpublic == True %}
-        <p>남녀분리</p>
-    {% elif toilet.tpublic == False %}
-        <p>남녀분리 노놉</p>
-    {% else %}
-        <p>남녀분리 정보가 없음</p>
-    {% endif %}
-
-    {% if toilet.ttype == 0 %}
-        <p>푸세식</p>
-    {% elif toilet.ttype == 1 %}
-        <p>좌변식</p>
-    {% else %}
-        <p>푸세식 vs 좌변식 정보가 없음</p>
-    {% endif %}
-    
-    <!-- review starts here -->
-    <form action="{% url 'toilet:info'}"></form>
+            <div class="badge_container" style="text-align: center;font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
+                {% if toilet.tpassword == True %}
+                    <img src="/static/img/badge/pw.png" style="width:100px; margin-bottom: 10px;">
+                    <text>비밀번호 O</text>
+                {% elif toilet.tpassword == False %}
+                    <img src="/static/img/badge/pw_N.png" style="width:100px; margin-bottom: 10px;">
+                    <text style="color: gray;">비밀번호 X</text>
+                {% else %}
+                <p>비밀번호 정보가 없음</p>
+                {% endif %}
+            </div>
+            
+            <div class="badge_container" style="text-align: center;font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
+                {% if toilet.tpublic == True %}
+                    <img src="/static/img/badge/mw.png" style="width:100px; margin-bottom: 10px;">
+                    <text>남녀분리 O</text>
+                {% elif toilet.tpublic == False %}
+                    <img src="/static/img/badge/mw_N.png" style="width:100px; margin-bottom: 10px;">
+                    <text style="color: gray;">남녀분리 X</text>
+                {% else %}
+                <p>남녀분리 정보가 없음</p>
+                {% endif %}
+            </div>
+            
+            <div class="badge_container" style="text-align: center;font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
+                {% if toilet.ttype == 0 %}
+                    <img src="/static/img/badge/toilet_N.png" style="width:100px; margin-bottom: 10px;">
+                    <text style="color: gray;">푸세식</text>
+                {% elif toilet.ttype == 1 %}
+                    <img src="/static/img/badge/toilet.png" style="width:100px; margin-bottom: 10px;">
+                    <text>좌변식</text>
+                </div>        
+                {% else %}
+                <p>푸세식 vs 좌변식 정보가 없음</p>
+                {% endif %}
+        </div>
+        <!-- review starts here -->
+        <form action="{% url 'toilet:info'}"></form>
+    </div>
+</div>
 {% endblock %}
