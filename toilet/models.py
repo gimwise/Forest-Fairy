@@ -6,14 +6,15 @@ from users.models import User
 
 # Create your models here.
 class ToiletInfo(models.Model):
-    squat = 0 # 푸세식
-    toilet = 1 # 좌변식
+    squat = 0 # 좌변기
+    toilet = 1 # 양변기
     unknown = 3
-    TTYPE_CHOICE = [(squat, '푸세식'), (toilet, '좌변식')]
-    tname=models.CharField(max_length=200,null=True)
-    tlocation=models.CharField(max_length=300,null=True)
-    tlat = models.FloatField(null=True) #위도
-    tlong = models.FloatField(null=True) #경도
+    TTYPE_CHOICE = [(squat, '좌변기'), (toilet, '양변기')]
+    id = models.AutoField(primary_key=True)
+    tname=models.CharField(max_length=200)
+    tlocation=models.CharField(max_length=300)
+    tlat = models.FloatField() #위도
+    tlong = models.FloatField() #경도
     tnumber=models.CharField(max_length=200,null=True)
     topen=models.CharField(max_length=200,null=True)
     tbidget=models.BooleanField(null=True)
