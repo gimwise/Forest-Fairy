@@ -21,40 +21,16 @@
     <body>
         <header>
             <nav class="bg">
-            <div class="logo">
-                <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f9da.svg" class="log-img">
-                <a class="nav-logo" href="{% url 'toilet:home' %}" class="header_logo">수피아</a>  
-            </div>
-            <div class="navd">
-                <!-- <ul class="nav justify-content-end"➕> -->
-                <ul class="n">
-                <!--<li class="nav-item">
-                    <a class="nav-link" href="{% url 'toilet:home' %}">home</a>
-                </li>-->
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'toilet:add' %}"> 화장실 등록</a>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'toilet:intro' %}">소개</a>
-                </li>
-                <li class="nav-item dropdown">
-                  
-                    {% if user.is_authenticated %}
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">프로필</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">내정보</a></li>
-                    <li><a class="dropdown-item" href="#">내가쓴리뷰</a></li>
-                    <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'users:logout' %}">로그아웃</a></li>
-                </ul>
-                    {%else%}
+                <div class="logo">
+                    <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f9da.svg" class="log-img">
+                    <a class="nav-logo" href="{% url 'toilet:home' %}" class="header_logo">수피아</a>  
+                </div>
+                <div class="navd">
+                     <!-- <ul class="nav justify-content-end"➕> -->
+                    <ul class="n">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'toilet:home' %}">home</a>
                     </li>
-                    {% endif %}
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'toilet:add' %}"> 화장실 등록</a>
@@ -64,30 +40,31 @@
                         <a class="nav-link" href="{% url 'toilet:intro' %}">소개</a>
                     </li>
                     <li class="nav-item dropdown">
-                        
+                      
                         {% if user.is_authenticated %}
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">프로필</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">내가쓴리뷰</a></li>
-                            <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'users:logout' %}">로그아웃</a></li>
-                </ul>
-                {%else%}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:login' %}">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:join' %}">회원가입</a>
-                </li>
-                {% endif %}
-                
-            </li>
-        </ul>
-    </div>
-    
-</nav>        
-</header>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">내정보</a></li>
+                        <li><a class="dropdown-item" href="#">내가쓴리뷰</a></li>
+                        <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'users:logout' %}">로그아웃</a></li>
+                    </ul>
+                        {%else%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">로그인</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:join' %}">회원가입</a>
+                        </li>
+                        {% endif %}
+                    
+                    </li>
+                  </ul>
+                </div>
+               
+            </nav>        
+        </header>
 <section id="section">
     {% block content %}
     {% endblock %}
