@@ -33,6 +33,4 @@ class ToiletForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment
-        exclude = ()
-        # field=['score']
-
+        fields=['score']

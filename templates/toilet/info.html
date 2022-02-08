@@ -20,7 +20,7 @@
         <hr size="3.5"  style="margin-top: 30px;">   
         <div class="info_badge">
         <h5 style="margin-left: 25px; font-weight: 700; margin-bottom: 20px;">화장실 정보</h5>
-             <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 25px;">
+            <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 25px;">
                 {% if toilet.tbidget == True %}
                     <img src="{% static 'img/badge/bidet.png' %}" style="width:100px;   margin-bottom: 10px;">
                     <text>비데 O</text>
@@ -81,7 +81,33 @@
                 <p>푸세식 vs 좌변식 정보가 없음</p>
                 {% endif %}
         </div>
+        <hr size="3.5"  style="margin-top: 30px;"> 
+          
         <!-- review starts here -->
+        {% if user.is_authenticated %}
+        <div class="ratings">
+            <h5 style="margin-left: 25px; font-weight: 700; margin-bottom: 20px;">화장실 평점</h5>
+                <div class="col text-center">
+                    <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
+                        {% csrf_token %}
+                        <button type="submit" class="fa fa-star fa-3x" id="first"></button>
+                        <button type="submit" class="fa fa-star fa-3x" id="second"></button>
+                        <button type="submit" class="fa fa-star fa-3x" id="third"></button>
+                        <button type="submit" class="fa fa-star fa-3x" id="fourth"></button>
+                        <button type="submit" class="fa fa-star fa-3x" id="fifth"></button>
+                    </form>
+                    <br>
+                    <div id="confirm-box"></div>
+                </div>
+        </div>
+        {% else %}
+        <div class="not_auth">
+            <h5>
+                리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
+            </h5>
+        </div>
+        {% endif %}
+        
     </div>
 </div>
 {% endblock %}
