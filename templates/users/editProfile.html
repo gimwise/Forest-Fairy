@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>내 정보</title>    
+    <title>내 정보 수정</title>    
 {% endblock %}
 
 {% block content %}
@@ -11,31 +11,31 @@
             
             <div class="seeProfile__content">
                 <div class="content__title">
-                    <p id="nickname">{{user.nickname}}님의 프로필</p>
+                    <p id="nickname">{{user.nickname}}님의 프로필 수정</p>
                 </div>
                 <table class="customer_table">
                     <tr>
                         <th class="type">별명</th>
-                        <td class="content">{{user.nickname}}</td>
+                        <td class="content"><input type="text" class="editInput" name="username"  placeholder="{{user.nickname}}" ></td>
                     </tr>
                     <tr>
                         <th class="type">성별</th>
                         <td class="content">
-                            {% if user.gender == 1 %} 여자
-                            {% elif user.gender == 0 %} 남자
-                            {%endif %}
+                            <select name="gender" class="select">
+                                <option value="1">남자</option>
+                                <option value="0">여자</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <th class="type">이메일</th>
-                        <td class="content">{{ user.email }}</td>
+                        <td class="content"><input type="text" class="editInput"name="username"  placeholder="{{ user.email }}" ></td>
                     </tr>
                     
                 </table>
-                    <a class="btn btn-success" id="profilebtn1" href="{% url 'users:editProfile' user.id %}">프로필 편집</a>
-                    <a class="btn btn-success" id="profilebtn2" href="{% url 'users:editPassword' user.id %}">비밀번호 변경</a>
+                    <a class="btn btn-success cancelBtn" href="{% url 'users:profile' user.id %}">취소</a>
+                    <a class="btn btn-success " href="{% url 'users:profile' user.id %}">완료</a>
             </div>
-            
         </div>
     </section>
 {% endblock %}

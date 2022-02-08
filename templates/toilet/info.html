@@ -24,7 +24,7 @@
              <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 25px;">
                 {% if toilet.tbidget == True %}
                     <img src="/static/img/badge/bidet.png" style="width:100px;   margin-bottom: 10px;">
-                    <text ">비데 O</text>
+                    <text>비데 O</text>
                 {% elif toilet.tbidget == False %}
                     <img src="/static/img/badge/bidet_N.png" style="width:100px;   margin-bottom: 10px;">
                     <text style="color: gray;">비데 X</text>                
@@ -82,7 +82,7 @@
                 {% endif %}
         </div>
         <!-- review starts here -->
-        <form action="{% url 'toilet:info'}"></form>
+        <form action="{% url 'toilet:info' %}"></form>
     </div>
 </div>
 {% endblock %}

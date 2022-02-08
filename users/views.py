@@ -16,6 +16,22 @@ def profile(request, id):
     }
     return render(request, 'users/profile.html', context)
 
+def editProfile(request, id):
+    User = get_user_model()
+    user = get_object_or_404(User, pk=id)
+    context = {
+        'user' :user
+    }
+    return render(request, 'users/editProfile.html', context)
+
+def editPassword(request, id):
+    User = get_user_model()
+    user = get_object_or_404(User, pk=id)
+    context = {
+        'user' :user
+    }
+    return render(request, 'users/editPassword.html', context)
+
 @csrf_exempt
 def join(request):
     if request.method == 'POST':

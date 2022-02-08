@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import ToiletInfo
+from .forms import ToiletForm
 from django.db.models import Avg
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
@@ -45,22 +46,25 @@ def home(request):
     context = {'toilet_list' : toilet_list}
     return render(request, 'home.html', context)
 
-def add(req):
-    if req.method=="POST":
-        post= ToiletInfo()
-        post.tlat = req.POST["tlat"]
-        post.tlong = req.POST["tlong"]
-        post.tname = req.POST["tname"]
-        post.tlocation = req.POST["tlocation"]
-        post.tpublic = True if req.POST.get('tpublic',False) else False 
-        post.tpassword = True if req.POST.get('tpassword',False) else False
-        post.tpaper = True if req.POST.get('tpaper',False) else False
-        post.ttype = True if req.POST.get('ttype',False) else False
-        post.tbidget = True if req.POST.get('tbidget',False) else False
-        post.save()
-        return redirect('toilet:info',post.id)
-    else:                       
-        return render(req, 'toilet/add.html')
+def add(request):
+    if request.method=="POST":
+        form = ToiletForm(request.POST)
+        if form.is_valid() :
+            toilet = form.save(commit=False)
+            toilet.tlat = request.POST["tlat"]
+            toilet.tlong = request.POST["tlong"]
+            toilet.tlocation = request.POST["tlocation"]
+            toilet.tpublic = True if request.POST.get('tpublic',False) else False
+            toilet.tpassword = True if request.POST.get('tpassword',False) else False
+            toilet.tpaper = True if request.POST.get('tpaper',False) else False
+            toilet.ttype = True if request.POST.get('ttype',False) else False
+            toilet.tbidget = True if request.POST.get('tbidget',False) else False
+            toilet.save()
+            return redirect('/')
+    else:
+        form = ToiletForm()
+    context = {'form' : form}
+    return render(request, 'toilet/add.html', context)
 
 def info(request, id):
     toilet = get_object_or_404(ToiletInfo, pk=id)

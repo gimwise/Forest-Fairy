@@ -1,18 +1,17 @@
-
-html,body{
-  width:100%;
-  height:100%;
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
-header{
+header {
   width: 100%;
   height: 10%;
-
 }
 
-#section{
+#section {
   width: 100%;
-  height : 90%;
+  height: 90%;
 }
 
 .nav-item {
@@ -20,24 +19,23 @@ header{
 }
 
 .login {
-  width:100%;
-	height:100%;
-	margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   padding-top: 80px;
   padding-bottom: 40px;
   font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   background-repeat: no-repeat;
   background: rgba(0, 0, 0, 0);
-  
 }
-.login h4{
-  font-weight:bold; 
-  text-align:center; 
-  margin-top:10%;
+.login h4 {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10%;
   margin-bottom: 10%;
 }
 
-.login_container{
+.login_container {
   width: 400px;
   padding: 30px 35px 30px 35px;
   margin: 0 auto; /* Added */
@@ -51,41 +49,40 @@ header{
   width: 100%;
   box-sizing: border-box;
   font-size: 16px;
-  height:45px;
+  height: 45px;
 }
-#login{
-  position:relative;
-  left:50%;
+#login {
+  position: relative;
+  left: 50%;
   transform: translateX(-50%);
   margin-top: 20px;
   margin-bottom: 20px;
-  width:100%;
-  height:45px;
+  width: 100%;
+  height: 45px;
   background-position: left;
   background-size: 200%;
-  color:white;
+  color: white;
   font-weight: bold;
-  border:none;
-  cursor:pointer;
+  border: none;
+  cursor: pointer;
   transition: 0.4s;
-  display:inline;
+  display: inline;
 
-	font-size: 18px;
-	background: #1cc979;
-
+  font-size: 18px;
+  background: #1cc979;
 }
 
 .join {
-  width:100%;
-	height:100%;
-	margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   padding-top: 80px;
   padding-bottom: 40px;
   font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   background-repeat: no-repeat;
-  background: rgba(0, 0, 0, 0); 
+  background: rgba(0, 0, 0, 0);
 }
-.join_container{
+.join_container {
   width: 400px;
   padding: 30px 35px 30px 35px;
   margin: 0 auto; /* Added */
@@ -95,13 +92,18 @@ header{
   border-radius: 0.5em;
 }
 
-.join h4{
-  font-weight:bold; 
-  text-align:center; 
-  margin-top:10%;
+.join h4 {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10%;
   margin-bottom: 10%;
 }
-.register_idForm,.register_pwForm, .register_pwcheckForm, .register_emailForm, .register_nicknameForm, .register_genderForm{
+.register_idForm,
+.register_pwForm,
+.register_pwcheckForm,
+.register_emailForm,
+.register_nicknameForm,
+.register_genderForm {
   display: block;
   width: 100%;
   font-size: 1rem;
@@ -119,8 +121,9 @@ header{
   border-radius: 0.3em;
   margin-bottom: -5px;
 }
-.register_birthForm, .col-3{
-  display:inline;
+.register_birthForm,
+.col-3 {
+  display: inline;
   width: 100%;
   font-size: 1rem;
   font-weight: 400;
@@ -138,24 +141,22 @@ header{
   font-size: 16px;
   border-radius: 0.3em;
 }
-#join{
+#join {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
-  height:45px;
+  height: 45px;
   background-position: left;
   background-size: 200%;
-  color:white;
+  color: white;
   font-weight: bold;
-  border:none;
-  cursor:pointer;
+  border: none;
+  cursor: pointer;
   transition: 0.4s;
-  display:inline;
-	font-size: 18px;
-	background: #1cc979;
+  display: inline;
+  font-size: 18px;
+  background: #1cc979;
 }
-
-
 
 /*------------------------------------------------*/
 .container p {
@@ -279,8 +280,10 @@ header{
 }
 
 /*------------------------------------------------*/
-
-
+/* 별점 매기기 */
+.checked {
+  color: #1cc979;
+}
 
 /* Home Map */
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
@@ -315,11 +318,7 @@ header{
 #placesList .item .marker_12 {background-position: 0 -516px;}
 #placesList .item .marker_13 {background-position: 0 -562px;}
 #placesList .item .marker_14 {background-position: 0 -608px;}
-#placesList .item .marker_15 {background-position: 0 -654px;}
+#placesList .item .marker_15 {background-position: 0 -654px;}ㅎ
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-
-
-
-
