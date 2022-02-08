@@ -19,6 +19,10 @@ header {
   height: 90%;
 }
 
+select, input{
+  cursor : default;
+}
+
 .nav-item {
   margin: 5px 10px;
 }
