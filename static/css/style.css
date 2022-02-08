@@ -4,6 +4,11 @@ body {
   height: 100%;
 }
 
+img{
+  -webkit-user-select: none;
+}
+
+
 header {
   width: 100%;
   height: 10%;
@@ -241,6 +246,9 @@ header {
   justify-content: center;
   margin-top: 16px;
   width: 50px;
+}
+.tinfo-icon>img{
+  width : 50px;
 }
 .tinfo-title {
   align-items: center;

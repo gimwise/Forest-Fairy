@@ -9,8 +9,7 @@
 <div class="container mt-4" id="tfinfo_form">
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
-        <input id="tname" name="tname" value="화장실이름">
-        <h5>화장실 정보를 입력해주세요</h5>
+        <h5 id="tname"></h5>
 
         {% for field in form %}
             <div class="form-group">
@@ -24,31 +23,31 @@
             <div>
                 <label>비데</label>
                 <label for="tbidget" class='tinfo-icon' id="tbidgetBtn">
-                    <img src="" alt="">
+                    <img id="tbidget-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
                 <label>휴지 비치</label>
                 <label for="tpaper" class='tinfo-icon' id="tpaperBtn">
-                    <img src="" alt="">
+                    <img id="tpaper-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
                 <label>비밀번호</label>
                 <label for="tpassword" class='tinfo-icon' id="tpasswordBtn">
-                    <img src="" alt="">
+                    <img id="tps-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
                 <label>남여분리</label>
                 <label for="tpublic" class='tinfo-icon' id="tpublicBtn">
-                    <img src="" alt="">
+                    <img id="tpublic-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label>좌변기</label>
+ 치              <label>좌변기</label>
                 <label for="ttype" class='tinfo-icon' id="ttypeBtn">
-                    <img src="" alt="">
+                    <img id="ttype-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
 
@@ -60,6 +59,11 @@
     </form>
 </div>
 <script>
+    // 제목
+    const title = document.getElementById('tname');
+    const tname = JSON.parse(localStorage.getItem("tname"));
+    title.innerHTML = `${tname}의 화장실 정보를 입력해주세요.`;
+
     // 클릭한 마커의 위도, 경도 정보 받아옴
     result=JSON.parse(localStorage.getItem("placeLocation"));
     placeName=JSON.parse(localStorage.getItem("placeName"));
@@ -69,68 +73,113 @@
     document.getElementById('id_tlong').value=result.La;
     document.getElementById('id_tname').value=JSON.parse(localStorage.getItem("tname"));
     document.getElementById('id_tlocation').value=JSON.parse(localStorage.getItem("taddress"));
-    // document.getElementById('address').innerHTML=result;
-
 
     // 비데
     const tbidgetInput = document.getElementById('id_tbidget');
     const tbidgetBtn = document.getElementById('tbidgetBtn');
+    const tbidgetImg = document.getElementById('tbidget-img');
+    const tbidgetFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/bidet.png' %}', '{% static 'img/badge/bidet_N.png' %}'];
     // 휴지
     const tpaperInput = document.getElementById('id_tpaper');
     const tpaperBtn = document.getElementById('tpaperBtn');
+    const tpaperImg = document.getElementById('tpaper-img');
+    const tpaperFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/tissue.png' %}', '{% static 'img/badge/tissue_N.png' %}'];
     // 비밀번호
     const tpasswordInput = document.getElementById('id_tpassword');
     const tpasswordBtn = document.getElementById('tpasswordBtn');
+    const tpasswordImg = document.getElementById('tps-img');
+    const tpasswordFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/pw.png' %}', '{% static 'img/badge/pw_N.png' %}'];
     // 남녀분리
     const tpublicInput = document.getElementById('id_tpublic');
     const tpublicBtn = document.getElementById('tpublicBtn');
+    const tpublicImg = document.getElementById('tpublic-img');
+    const tpublicFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/mw.png' %}', '{% static 'img/badge/mw_N.png' %}'];
     // 변기
     const ttypeInput = document.getElementById('id_ttype');
     const ttypeBtn = document.getElementById('ttypeBtn');
+    const ttypeImg = document.getElementById('ttype-img');
+    const ttypeFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/toilet_N.png' %}', '{% static 'img/badge/toilet.png' %}'];
 
     tbidgetBtn.addEventListener("click", ()=>{
         let currentOption = tbidgetInput.options.selectedIndex;
         if(currentOption == 2){
             tbidgetInput.options.selectedIndex = 0;
+            tbidgetImg.src=tbidgetFiles[0];
+        }
+        else if(currentOption == 1){
+            tbidgetInput.options.selectedIndex++;
+            tbidgetImg.src=tbidgetFiles[2];
         }
         else {
             tbidgetInput.options.selectedIndex++;
+            tbidgetImg.src=tbidgetFiles[1];
         }
     });
     tpaperBtn.addEventListener("click", ()=>{
         let currentOption = tpaperInput.options.selectedIndex;
         if(currentOption == 2){
             tpaperInput.options.selectedIndex = 0;
+            tpaperImg.src = tpaperFiles[0];
+
+        }
+        else if(currentOption == 1){
+            tpaperInput.options.selectedIndex++;
+            tpaperImg.src=tpaperFiles[2];
         }
         else {
             tpaperInput.options.selectedIndex++;
+            tpaperImg.src=tpaperFiles[1];
         }
     });
     tpasswordBtn.addEventListener("click", ()=>{
         let currentOption = tpasswordInput.options.selectedIndex;
         if(currentOption == 2){
             tpasswordInput.options.selectedIndex = 0;
+            tpasswordImg.src = tpasswordFiles[0];
+
+        }
+        else if(currentOption == 1){
+            tpasswordInput.options.selectedIndex++;
+            tpasswordImg.src=tpasswordFiles[2];
         }
         else {
             tpasswordInput.options.selectedIndex++;
+            tpasswordImg.src=tpasswordFiles[1];
         }
     });
     tpublicBtn.addEventListener("click", ()=>{
         let currentOption = tpublicInput.options.selectedIndex;
         if(currentOption == 2){
             tpublicInput.options.selectedIndex = 0;
+            tpublicImg.src = tpublicFiles[0];
+
+        }
+        else if(currentOption == 1){
+            tpublicInput.options.selectedIndex++;
+            tpublicImg.src=tpublicFiles[2];
         }
         else {
             tpublicInput.options.selectedIndex++;
+            tpublicImg.src=tpublicFiles[1];
         }
     });
     ttypeBtn.addEventListener("click", ()=>{
         let currentOption = ttypeInput.options.selectedIndex;
         if(currentOption == 2){
             ttypeInput.options.selectedIndex = 0;
+            console.log(ttypeInput.options.value);
+            ttypeImg.src = ttypeFiles[0];
+
+        }
+        else if(currentOption == 1){
+            ttypeInput.options.selectedIndex++;
+            console.log(ttypeInput.options.value);
+            ttypeImg.src=ttypeFiles[2];
         }
         else {
             ttypeInput.options.selectedIndex++;
+            console.log(ttypeInput.options.value);
+            ttypeImg.src=ttypeFiles[1];
         }
     });
 
