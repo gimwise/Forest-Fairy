@@ -1,22 +1,70 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import ToiletInfo
+from .forms import ToiletForm
+from django.db.models import Avg
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+import json
 
 # Create your views here.
-
 def getJson(request):
     toilet_list = ToiletInfo.objects.all()
-    toilet_json = serializers.serialize('json', toilet_list)
-    return HttpResponse(toilet_json, content_type="text/json-comment-filtered")
+    toilets = []
+    for toilet in toilet_list :
+        dict = {
+                'pk' : toilet.id,
+                'tname': toilet.tname,
+                'tlocation' : toilet.tlocation,
+                'tlat' : toilet.tlat,
+                'tlong' : toilet.tlong,
+                'tnumber' : toilet.tnumber,
+                'topen' : toilet.topen,
+                'tbidget' : toilet.tbidget,
+                'tpaper' : toilet.tpaper,
+                'tpassword' : toilet.tpassword,
+                'tpublic' : toilet.tpublic,
+                'ttype' : toilet.ttype,
+                'avg': toilet.comment_set.aggregate(avg=Avg('score'))
+                }
+        # toilet_json.append(json.dumps(dict, ensure_ascii=False))
+        toilets.append(dict)
+    toilet_json = json.dumps(toilets)
+    return HttpResponse(toilet_json, content_type="text/json-comment-filtered; charset=utf-8")
+
+def getScore(request):
+    toilet_list = ToiletInfo.objects.all()
+    toilet_score_avg = []
+    for toilet in toilet_list :
+        dict = {'tname': toilet.tname, 'avg': toilet.comment_set.aggregate(avg=Avg('score'))}
+        toilet_score_avg.append(json.dumps(dict, ensure_ascii=False))
+    return HttpResponse(content=toilet_score_avg, content_type="text/json-comment-filtered; charset=utf-8")
+
 
 def home(request):
     toilet_list = ToiletInfo.objects.all()
+
     context = {'toilet_list' : toilet_list}
     return render(request, 'home.html', context)
 
-def add(req):
-    return render(req, 'toilet/add.html')
+def add(request):
+    if request.method=="POST":
+        form = ToiletForm(request.POST)
+        if form.is_valid() :
+            toilet = form.save(commit=False)
+            toilet.tlat = request.POST["tlat"]
+            toilet.tlong = request.POST["tlong"]
+            toilet.tlocation = request.POST["tlocation"]
+            toilet.tpublic = True if request.POST.get('tpublic',False) else False
+            toilet.tpassword = True if request.POST.get('tpassword',False) else False
+            toilet.tpaper = True if request.POST.get('tpaper',False) else False
+            toilet.ttype = True if request.POST.get('ttype',False) else False
+            toilet.tbidget = True if request.POST.get('tbidget',False) else False
+            toilet.save()
+            return redirect('/')
+    else:
+        form = ToiletForm()
+    context = {'form' : form}
+    return render(request, 'toilet/add.html', context)
 
 def info(request, id):
     toilet = get_object_or_404(ToiletInfo, pk=id)
