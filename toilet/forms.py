@@ -18,12 +18,12 @@ class ToiletForm(forms.ModelForm):
             'ttype' : '변기',
         }
         widgets ={
-            'tname' : forms.TextInput(attrs={'class' : 'form-control'}),
-            'tlocation' : forms.TextInput(attrs={'class' : 'form-control'}),
-            'tlat' : forms.TextInput(attrs={'class' : 'form-control'}),
-            'tlong' : forms.TextInput(attrs={'class' : 'form-control'}),
-            'tpublic' : forms.NullBooleanSelect(attrs={'class' : 'form-select'}),
-            'tbidget' : forms.NullBooleanSelect(attrs={'class' : 'form-control'}),
+            'tname' : forms.TextInput(attrs={'class' : 'form-control' , 'type' : 'hidden',}),
+            'tlocation' : forms.TextInput(attrs={'class' : 'form-control', 'type' : 'hidden',}),
+            'tlat' : forms.TextInput(attrs={'class' : 'form-control', 'type' : 'hidden',}),
+            'tlong' : forms.TextInput(attrs={'class' : 'form-control', 'type' : 'hidden',}),
+            'tpublic' : forms.NullBooleanSelect(attrs={'class' : 'form-select',}),
+            'tbidget' : forms.NullBooleanSelect(attrs={'class' : 'form-select'}),
             'tpaper' : forms.NullBooleanSelect(attrs={'class' : 'form-select'}),
             'tpassword' : forms.NullBooleanSelect(attrs={'class' : 'form-select'}),
             'ttype' : forms.Select(attrs={'class' : 'form-select'}),
