@@ -10,15 +10,6 @@
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
         <h5 id="tname"></h5>
-
-        {% for field in form %}
-            <div class="form-group">
-                <label>{{ field.label_tag }}</label>
-                {{ field }}
-            </div>
-
-        {% endfor %}
-
         <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
             <div>
                 <label>비데</label>
@@ -45,7 +36,7 @@
                 </label>
             </div>
             <div>
- 치              <label>좌변기</label>
+                <label>좌변기</label>
                 <label for="ttype" class='tinfo-icon' id="ttypeBtn">
                     <img id="ttype-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
@@ -55,6 +46,13 @@
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <input class="btn btn-success mt-5" id="doneBtn" type="submit" value="완료">
+        </div>
+        <div id="add-forms">
+        {% for field in form %}
+            <div class="form-group">
+                {{ field }}
+            </div>
+        {% endfor %}
         </div>
     </form>
 </div>
@@ -68,7 +66,7 @@
     result=JSON.parse(localStorage.getItem("placeLocation"));
     placeName=JSON.parse(localStorage.getItem("placeName"));
     placeAddr=JSON.parse(localStorage.getItem("placeAddr"));
-    
+
     document.getElementById('id_tlat').value=result.Ma;
     document.getElementById('id_tlong').value=result.La;
     document.getElementById('id_tname').value=JSON.parse(localStorage.getItem("tname"));
@@ -79,26 +77,31 @@
     const tbidgetBtn = document.getElementById('tbidgetBtn');
     const tbidgetImg = document.getElementById('tbidget-img');
     const tbidgetFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/bidet.png' %}', '{% static 'img/badge/bidet_N.png' %}'];
+    tbidgetInput.style.visibility = 'hidden';
     // 휴지
     const tpaperInput = document.getElementById('id_tpaper');
     const tpaperBtn = document.getElementById('tpaperBtn');
     const tpaperImg = document.getElementById('tpaper-img');
     const tpaperFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/tissue.png' %}', '{% static 'img/badge/tissue_N.png' %}'];
+    tpaperInput.style.visibility = 'hidden';
     // 비밀번호
     const tpasswordInput = document.getElementById('id_tpassword');
     const tpasswordBtn = document.getElementById('tpasswordBtn');
     const tpasswordImg = document.getElementById('tps-img');
     const tpasswordFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/pw.png' %}', '{% static 'img/badge/pw_N.png' %}'];
+    tpasswordInput.style.visibility = 'hidden';
     // 남녀분리
     const tpublicInput = document.getElementById('id_tpublic');
     const tpublicBtn = document.getElementById('tpublicBtn');
     const tpublicImg = document.getElementById('tpublic-img');
     const tpublicFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/mw.png' %}', '{% static 'img/badge/mw_N.png' %}'];
+    tpublicInput.style.visibility = 'hidden';
     // 변기
     const ttypeInput = document.getElementById('id_ttype');
     const ttypeBtn = document.getElementById('ttypeBtn');
     const ttypeImg = document.getElementById('ttype-img');
     const ttypeFiles = ['{% static 'img/badge/question.png' %}', '{% static 'img/badge/toilet_N.png' %}', '{% static 'img/badge/toilet.png' %}'];
+    ttypeInput.style.visibility = 'hidden';
 
     tbidgetBtn.addEventListener("click", ()=>{
         let currentOption = tbidgetInput.options.selectedIndex;
@@ -167,18 +170,15 @@
         let currentOption = ttypeInput.options.selectedIndex;
         if(currentOption == 2){
             ttypeInput.options.selectedIndex = 0;
-            console.log(ttypeInput.options.value);
             ttypeImg.src = ttypeFiles[0];
 
         }
         else if(currentOption == 1){
             ttypeInput.options.selectedIndex++;
-            console.log(ttypeInput.options.value);
             ttypeImg.src=ttypeFiles[2];
         }
         else {
             ttypeInput.options.selectedIndex++;
-            console.log(ttypeInput.options.value);
             ttypeImg.src=ttypeFiles[1];
         }
     });
