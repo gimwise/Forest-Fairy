@@ -115,11 +115,11 @@ if (one) {
                 },
                 success: function(response){
                     console.log(response)
-                    confirmBox.innerHTML = `<h1>${response.score}점. 리뷰가 성공적으로 등록되었습니다.</h1>`
+                    confirmBox.innerHTML = `<h6>${response.score} / 5점. 리뷰가 성공적으로 등록되었습니다.</h6>`
                 },
                 error: function(error){
                     console.log(error)
-                    confirmBox.innerHTML = '<h1>다시 시도해주세요.</h1>'
+                    confirmBox.innerHTML = '<h6>다시 시도해주세요.</h6>'
                 }
             })
         })
