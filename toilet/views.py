@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import ToiletInfo
-from .forms import ToiletForm
+from users.models import User
+from .forms import ToiletForm, CommentForm
 from django.db.models import Avg
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
@@ -63,13 +64,34 @@ def add(request):
             return redirect('/')
     else:
         form = ToiletForm()
-    context = {'form' : form}
+        context = {'form' : form}
     return render(request, 'toilet/add.html', context)
 
 def info(request, id):
-    toilet = get_object_or_404(ToiletInfo, pk=id)
-    context = {'toilet' : toilet}
-    return render(request, 'toilet/info.html', context)
+    if request.method=="POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            uid = request.user.id
+            print(uid)
+            tid = request.POST.get('tid')
+            rating.score = request.POST.get('score')
+            rating.author = get_object_or_404(User, pk=uid)
+            rating.toilet = get_object_or_404(ToiletInfo, pk=tid)
+            rating.save()
+            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            return JsonResponse({'success':'true', 'score':rating.score}, safe=False)
+        else:
+            print(form.errors)
+            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            print(form.non_field_errors)
+    else :
+        toilet = get_object_or_404(ToiletInfo, pk=id)
+        context = {'toilet' : toilet}
+        return render(request, 'toilet/info.html', context)
+    return JsonResponse({'success':'false'})
+    
 
 def intro(req):
     return render(req, 'toilet/intro.html')
+

@@ -13,7 +13,7 @@ const csrf = document.getElementsByName('csrfmiddlewaretoken')
 // checked 속성 추가해주는 함수
 const handleStarSelect = (size) => {
     const children = form.children
-    console.log(children[0])
+    // console.log(children[0])
     for (let i=0; i < children.length; i++) {
         if(i <= size) {
             children[i].classList.add('checked')
@@ -89,9 +89,9 @@ if (one) {
     }))
 
     arr.forEach(item=> item.addEventListener('click', (event)=>{
-        // value of the rating not numeric
+        // rated score not numeric
         const val = event.target.id
-        
+        // console.log(val)
         let isSubmit = false
         form.addEventListener('submit', e=>{
             e.preventDefault()
@@ -99,26 +99,27 @@ if (one) {
                 return
             }
             isSubmit = true
-            // picture id
+            
+            // toilet id
             const id = e.target.id
-            // value of the rating translated into numeric
+            // rated score numeric
             const val_num = getNumericValue(val)
-
+            // alert(val_num)
             $.ajax({
                 type: 'POST',
-                url: '/rate/',
+                url: `/${id}/`,
                 data: {
                     'csrfmiddlewaretoken': csrf[0].value,
-                    'el_id': id,
-                    'val': val_num,
+                    'tid': id,
+                    'score': val_num,
                 },
                 success: function(response){
                     console.log(response)
-                    confirmBox.innerHTML = `<h1>Successfully rated with ${response.score}</h1>`
+                    confirmBox.innerHTML = `<h1>${response.score}점. 리뷰가 성공적으로 등록되었습니다.</h1>`
                 },
                 error: function(error){
                     console.log(error)
-                    confirmBox.innerHTML = '<h1>Ups... something went wrong</h1>'
+                    confirmBox.innerHTML = '<h1>다시 시도해주세요.</h1>'
                 }
             })
         })
