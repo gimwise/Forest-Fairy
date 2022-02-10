@@ -9,34 +9,34 @@
 <div class="container mt-4" id="tfinfo_form">
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
-        <h5 id="tname"></h5>
-        <div class="toilet-info1 mt-5" style="--column-count: 5;--row-count: 1;">
+        <h5 class="text-center" id="tname"></h5>
+        <div class="toilet-info1" style="--column-count: 5;--row-count: 1;">
             <div>
-                <label>비데</label>
+                <label class="tinfo-title">비데</label>
                 <label for="tbidget" class='tinfo-icon' id="tbidgetBtn">
                     <img id="tbidget-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label>휴지 비치</label>
+                <label class="tinfo-title">휴지 비치</label>
                 <label for="tpaper" class='tinfo-icon' id="tpaperBtn">
                     <img id="tpaper-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label>비밀번호</label>
+                <label class="tinfo-title">비밀번호</label>
                 <label for="tpassword" class='tinfo-icon' id="tpasswordBtn">
                     <img id="tps-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label>남여분리</label>
+                <label class="tinfo-title">남여분리</label>
                 <label for="tpublic" class='tinfo-icon' id="tpublicBtn">
                     <img id="tpublic-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label>좌변기</label>
+                <label class="tinfo-title">좌변기</label>
                 <label for="ttype" class='tinfo-icon' id="ttypeBtn">
                     <img id="ttype-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
@@ -45,7 +45,7 @@
 
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <input class="btn btn-success mt-5" id="doneBtn" type="submit" value="완료">
+            <input class="btn btn-success" id="doneBtn" type="submit" value="완료">
         </div>
         <div id="add-forms">
         {% for field in form %}
