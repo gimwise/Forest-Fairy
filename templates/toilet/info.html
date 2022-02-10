@@ -4,110 +4,116 @@
 <title>화장실 정보</title>
 {% endblock %}
 {% block content %}
-<div id="info" style="  width: 55rem; height: 35em; padding: 50px 30px;;
-  margin: 0 auto; /* Added */ float: none; /* Added */
-  margin-bottom: 10px; /* Added */ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   padding-left: 100px;padding-right: 100px; position: relative;  border: double 8px; border-color: #1cc979;">
-    <div id="info_container">
+    <div class="info_container">
         <div class="sub">
-            <h1 style="text-align: center;">"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
-                <img src="{% static 'img/fairy.png' %}" style="width: 35px; margin:0 0 20px -5px;">
+            <h1>"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
+                <img src="{% static 'img/fairy.png' %}">
             </h1><br>
-            <p>{{ toilet.tlocation }}</p>
-            <p>{{ toilet.tnumber }}</p>
-            <p>{{ toilet.topen }}</p>
+
+            <div class="info_plus">
+                <p><span class="material-icons-outlined" style="font-size:27px;">place</span>{{ toilet.tlocation }}</p>
+                <p><span class="material-icons-outlined">phone_in_talk</span> {{ toilet.tnumber }}</p>
+                <p><span class="material-icons-outlined">schedule </span> {{ toilet.topen }}</p>
+            </div>
         </div>
-        <hr size="3.5"  style="margin-top: 30px;">   
-        <div class="info_badge">
-        <h5 style="margin-left: 25px; font-weight: 700; margin-bottom: 20px;">화장실 정보</h5>
-            <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 25px;">
-                {% if toilet.tbidget == True %}
-                    <img src="{% static 'img/badge/bidet.png' %}" style="width:100px;   margin-bottom: 10px;">
-                    <text>비데 O</text>
-                {% elif toilet.tbidget == False %}
-                    <img src="{% static 'img/badge/bidet_N.png' %}" style="width:100px;   margin-bottom: 10px;">
-                    <text style="color: gray;">비데 X</text>                
-                {% else %}
+        <hr size="3.5" style="margin-top: 30px;">
 
-                <p>비데 정보가 없음</p>
-                {% endif %}
-            </div>
-
-            <div class="badge_container"style="text-align: center; font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
-                {% if toilet.tpaper == True %}
-                    <img src="{% static 'img/badge/tissue.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text>휴지 O</text>
-                {% elif toilet.tpaper == False %}
-                    <img src="{% static 'img/badge/tissue_N.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text style="color: gray;">휴지 X</text>
-                {% else %}
-                <p>휴지 정보가 없음</p>
-                {% endif %}
-            </div>
-
-            <div class="badge_container" style="text-align: center;font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
-                {% if toilet.tpassword == True %}
-                    <img src="{% static 'img/badge/pw.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text>비밀번호 O</text>
-                {% elif toilet.tpassword == False %}
-                    <img src="{% static 'img/badge/pw_N.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text style="color: gray;">비밀번호 X</text>
-                {% else %}
-                <p>비밀번호 정보가 없음</p>
-                {% endif %}
-            </div>
-            
-            <div class="badge_container" style="text-align: center;font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
-                {% if toilet.tpublic == True %}
-                    <img src="{% static 'img/badge/mw.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text>남녀분리 O</text>
-                {% elif toilet.tpublic == False %}
-                    <img src="{% static 'img/badge/mw_N.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text style="color: gray;">남녀분리 X</text>
-                {% else %}
-                <p>남녀분리 정보가 없음</p>
-                {% endif %}
-            </div>
-            
-            <div class="badge_container" style="text-align: center;font-weight:bold;display:inline-block; width:100px;height:150px; margin-left: 20px;">
-                {% if toilet.ttype == 0 %}
-                    <img src="{% static 'img/badge/toilet_N.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text style="color: gray;">푸세식</text>
-                {% elif toilet.ttype == 1 %}
-                    <img src="{% static 'img/badge/toilet.png' %}" style="width:100px; margin-bottom: 10px;">
-                    <text>좌변식</text>
-                </div>        
-                {% else %}
-                <p>푸세식 vs 좌변식 정보가 없음</p>
-                {% endif %}
-        </div>
-        <hr size="3.5"  style="margin-top: 30px;"> 
-          
         <!-- review starts here -->
         {% if user.is_authenticated %}
         <div class="ratings">
-            <h5 style="margin-left: 25px; font-weight: 700; margin-bottom: 20px;">화장실 평점</h5>
-                <div class="col text-center">
-                    <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
-                        {% csrf_token %}
-                        <button type="submit" class="fa fa-star fa-3x" id="first"></button>
-                        <button type="submit" class="fa fa-star fa-3x" id="second"></button>
-                        <button type="submit" class="fa fa-star fa-3x" id="third"></button>
-                        <button type="submit" class="fa fa-star fa-3x" id="fourth"></button>
-                        <button type="submit" class="fa fa-star fa-3x" id="fifth"></button>
-                    </form>
-                    <br>
-                    <div id="confirm-box"></div>
-                </div>
+            <h5>화장실 평점</h5>
+            <div class="col text-center">
+                <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
+                    {% csrf_token %}
+                    <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                </form>
+                <br>
+                <div id="confirm-box"></div>
+            </div>
         </div>
         {% else %}
         <div class="not_auth">
-            <h5>
+            <h6>
                 리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
-            </h5>
+            </h6>
         </div>
         {% endif %}
+
+        <hr size="3.5"  style="margin-top: 20px;">   
+        <div class="info_badge">
+            <h5 >화장실 정보</h5>
+            <div class="badge_container">
+                {% if toilet.tbidget == True %}
+                    <img src="{% static 'img/badge/bidet.png' %}">
+                    <text>비데 O</text>
+                {% elif toilet.tbidget == False %}
+                    <img src="{% static 'img/badge/bidet_N.png' %}">
+                    <text id="biget_x">비데 X</text>                
+                {% else %}
+                    <img src="{% static 'img/badge/question.png' %}">
+                    <text id="biget_x">비데<BR>정보가 없음</text>
+                {% endif %}
+            </div>
+
+            <div class="badge_container">
+                {% if toilet.tpaper == True %}
+                    <img src="{% static 'img/badge/tissue.png' %}">
+                    <text>휴지 O</text>
+                {% elif toilet.tpaper == False %}
+                    <img src="{% static 'img/badge/tissue_N.png' %}">
+                    <text id="biget_x">휴지 X</text>
+                {% else %}
+                    <img src="{% static 'img/badge/question.png' %}">
+                    <text id="biget_x">휴지<BR>정보가 없음</text>
+                {% endif %}
+            </div>
+
+            <div class="badge_container">
+                {% if toilet.tpassword == True %}
+                    <img src="{% static 'img/badge/pw.png' %}">
+                    <text>비밀번호 O</text>
+                {% elif toilet.tpassword == False %}
+                    <img src="{% static 'img/badge/pw_N.png' %}">
+                    <text id="biget_x">비밀번호 X</text>
+                {% else %}
+                    <img src="{% static 'img/badge/question.png' %}">
+                    <text id="biget_x">비밀번호<BR>정보가 없음</text>
+                {% endif %}
+            </div>
+            
+            <div class="badge_container">
+                {% if toilet.tpublic == True %}
+                    <img src="{% static 'img/badge/mw.png' %}">
+                    <text>남녀분리 O</text>
+                {% elif toilet.tpublic == False %}
+                    <img src="{% static 'img/badge/mw_N.png' %}">
+                    <text id="biget_x">남녀분리 X</text>
+                {% else %}
+                    <img src="{% static 'img/badge/question.png' %}">
+                    <text id="biget_x">남녀분리<BR>정보가 없음</text>
+                {% endif %}
+            </div>
+            
+            <div class="badge_container">
+                {% if toilet.ttype == 0 %}
+                    <img src="{% static 'img/badge/squat.png' %}">
+                    <text>좌변기</text>
+                {% elif toilet.ttype == 1 %}
+                    <img src="{% static 'img/badge/toilet.png' %}">
+                    <text>양변기</text>
+                </div>        
+                {% else %}
+                    <img src="{% static 'img/badge/question.png' %}">
+                    <text id="biget_x">변기<BR>정보가 없음</text>
+                {% endif %}
+        </div>
+          
+
         
     </div>
-</div>
+
 {% endblock %}
