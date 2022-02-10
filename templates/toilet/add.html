@@ -48,11 +48,11 @@
             <input class="btn btn-success" id="doneBtn" type="submit" value="완료">
         </div>
         <div id="add-forms">
-        {% for field in form %}
+            {% for field in form %}
             <div class="form-group">
                 {{ field }}
             </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     </form>
 </div>
@@ -63,14 +63,14 @@
     title.innerHTML = `${tname}의 화장실 정보를 입력해주세요.`;
 
     // 클릭한 마커의 위도, 경도 정보 받아옴
-    result=JSON.parse(localStorage.getItem("placeLocation"));
-    placeName=JSON.parse(localStorage.getItem("placeName"));
-    placeAddr=JSON.parse(localStorage.getItem("placeAddr"));
+    result = JSON.parse(localStorage.getItem("placeLocation"));
+    placeName = JSON.parse(localStorage.getItem("placeName"));
+    placeAddr = JSON.parse(localStorage.getItem("placeAddr"));
 
-    document.getElementById('id_tlat').value=result.Ma;
-    document.getElementById('id_tlong').value=result.La;
-    document.getElementById('id_tname').value=JSON.parse(localStorage.getItem("tname"));
-    document.getElementById('id_tlocation').value=JSON.parse(localStorage.getItem("taddress"));
+    document.getElementById('id_tlat').value = result.Ma;
+    document.getElementById('id_tlong').value = result.La;
+    document.getElementById('id_tname').value = JSON.parse(localStorage.getItem("tname"));
+    document.getElementById('id_tlocation').value = JSON.parse(localStorage.getItem("taddress"));
 
     // 비데
     const tbidgetInput = document.getElementById('id_tbidget');
@@ -100,86 +100,86 @@
     const ttypeInput = document.getElementById('id_ttype');
     const ttypeBtn = document.getElementById('ttypeBtn');
     const ttypeImg = document.getElementById('ttype-img');
-    const ttypeFiles = ["{% static 'img/badge/question.png' %}", "{% static 'img/badge/toilet_N.png' %}", "{% static 'img/badge/toilet.png' %}"];
+    const ttypeFiles = ["{% static 'img/badge/question.png' %}", "{% static 'img/badge/squat.png' %}", "{% static 'img/badge/toilet.png' %}"];
     ttypeInput.style.visibility = 'hidden';
 
-    tbidgetBtn.addEventListener("click", ()=>{
+    tbidgetBtn.addEventListener("click", () => {
         let currentOption = tbidgetInput.options.selectedIndex;
-        if(currentOption == 2){
+        if (currentOption == 2) {
             tbidgetInput.options.selectedIndex = 0;
-            tbidgetImg.src=tbidgetFiles[0];
+            tbidgetImg.src = tbidgetFiles[0];
         }
-        else if(currentOption == 1){
+        else if (currentOption == 1) {
             tbidgetInput.options.selectedIndex++;
-            tbidgetImg.src=tbidgetFiles[2];
+            tbidgetImg.src = tbidgetFiles[2];
         }
         else {
             tbidgetInput.options.selectedIndex++;
-            tbidgetImg.src=tbidgetFiles[1];
+            tbidgetImg.src = tbidgetFiles[1];
         }
     });
-    tpaperBtn.addEventListener("click", ()=>{
+    tpaperBtn.addEventListener("click", () => {
         let currentOption = tpaperInput.options.selectedIndex;
-        if(currentOption == 2){
+        if (currentOption == 2) {
             tpaperInput.options.selectedIndex = 0;
             tpaperImg.src = tpaperFiles[0];
 
         }
-        else if(currentOption == 1){
+        else if (currentOption == 1) {
             tpaperInput.options.selectedIndex++;
-            tpaperImg.src=tpaperFiles[2];
+            tpaperImg.src = tpaperFiles[2];
         }
         else {
             tpaperInput.options.selectedIndex++;
-            tpaperImg.src=tpaperFiles[1];
+            tpaperImg.src = tpaperFiles[1];
         }
     });
-    tpasswordBtn.addEventListener("click", ()=>{
+    tpasswordBtn.addEventListener("click", () => {
         let currentOption = tpasswordInput.options.selectedIndex;
-        if(currentOption == 2){
+        if (currentOption == 2) {
             tpasswordInput.options.selectedIndex = 0;
             tpasswordImg.src = tpasswordFiles[0];
 
         }
-        else if(currentOption == 1){
+        else if (currentOption == 1) {
             tpasswordInput.options.selectedIndex++;
-            tpasswordImg.src=tpasswordFiles[2];
+            tpasswordImg.src = tpasswordFiles[2];
         }
         else {
             tpasswordInput.options.selectedIndex++;
-            tpasswordImg.src=tpasswordFiles[1];
+            tpasswordImg.src = tpasswordFiles[1];
         }
     });
-    tpublicBtn.addEventListener("click", ()=>{
+    tpublicBtn.addEventListener("click", () => {
         let currentOption = tpublicInput.options.selectedIndex;
-        if(currentOption == 2){
+        if (currentOption == 2) {
             tpublicInput.options.selectedIndex = 0;
             tpublicImg.src = tpublicFiles[0];
 
         }
-        else if(currentOption == 1){
+        else if (currentOption == 1) {
             tpublicInput.options.selectedIndex++;
-            tpublicImg.src=tpublicFiles[2];
+            tpublicImg.src = tpublicFiles[2];
         }
         else {
             tpublicInput.options.selectedIndex++;
-            tpublicImg.src=tpublicFiles[1];
+            tpublicImg.src = tpublicFiles[1];
         }
     });
-    ttypeBtn.addEventListener("click", ()=>{
+    ttypeBtn.addEventListener("click", () => {
         let currentOption = ttypeInput.options.selectedIndex;
-        if(currentOption == 2){
+        if (currentOption == 2) {
             ttypeInput.options.selectedIndex = 0;
             ttypeImg.src = ttypeFiles[0];
 
         }
-        else if(currentOption == 1){
+        else if (currentOption == 1) {
             ttypeInput.options.selectedIndex++;
-            ttypeImg.src=ttypeFiles[2];
+            ttypeImg.src = ttypeFiles[2];
         }
         else {
             ttypeInput.options.selectedIndex++;
-            ttypeImg.src=ttypeFiles[1];
+            ttypeImg.src = ttypeFiles[1];
         }
     });
 
