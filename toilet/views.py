@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth import get_user_model
 from .models import ToiletInfo
 from users.models import User
 from .forms import ToiletForm, CommentForm
@@ -94,4 +95,6 @@ def info(request, id):
 
 def intro(req):
     return render(req, 'toilet/intro.html')
+
+
 

@@ -1,7 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ExportActionModelAdmin, ImportExportMixin, ImportMixin
-from .models import ToiletInfo, Comment
-
+from .models import ToiletInfo, Comment, Bookmarks
 # Register your models here.
 class ToiletAdmin(ImportExportMixin,admin.ModelAdmin):
     pass
@@ -16,5 +15,14 @@ class CommentAdmin(admin.ModelAdmin):
     def get_tname(self, obj):
         return obj.toilet.tname
 
+class BookMarkAdmin(admin.ModelAdmin):
+    list_display = (
+        'get_tname',
+        'user'
+    )
+    def get_tname(self, obj):
+        return obj.toilet.tname
+
 admin.site.register(ToiletInfo,ToiletAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Bookmarks, BookMarkAdmin)

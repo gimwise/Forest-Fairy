@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, get_user_model
 from users.forms import UserForm
 from django.views.decorators.csrf import csrf_exempt
-
+from users.models import *
+from toilet.models import Bookmarks
 
 
 # Create your views here.
@@ -47,3 +48,11 @@ def join(request):
             return redirect('toilet:home')
         form = UserForm()
         return render(request, 'users/join.html', {'form': form})
+
+def bookmarks(request, id):
+    bookmarks = Bookmarks.objects.filter(user = id)
+
+    context = {
+        'bookmarks' : bookmarks
+    }
+    return render(request, 'toilet/bookmarks.html', context)
