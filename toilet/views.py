@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import get_user_model
-from .models import ToiletInfo
+from .models import ToiletInfo, Comment, Bookmarks
 from users.models import User
 from .forms import ToiletForm, CommentForm
 from django.db.models import Avg
@@ -70,9 +70,9 @@ def add(request):
 
 def info(request, id):
     if request.method=="POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            rating = form.save(commit=False)
+        registForm = CommentForm(request.POST)
+        if registForm.is_valid():
+            rating = registForm.save(commit=False)
             uid = request.user.id
             print(uid)
             tid = request.POST.get('tid')
@@ -83,18 +83,56 @@ def info(request, id):
             print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             return JsonResponse({'success':'true', 'score':rating.score}, safe=False)
         else:
-            print(form.errors)
+            print(registForm.errors)
             print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            print(form.non_field_errors)
+            print(registForm.non_field_errors)
     else :
         toilet = get_object_or_404(ToiletInfo, pk=id)
-        context = {'toilet' : toilet}
+        uid = request.user.id
+        user = get_object_or_404(User, pk=uid)
+        try:
+            exist = Bookmarks.objects.get(user=user, toilet=toilet)
+        except:
+            exist = None
+        context = {'toilet' : toilet, 'exist' : exist}
         return render(request, 'toilet/info.html', context)
-    return JsonResponse({'success':'false'})
-    
 
 def intro(req):
     return render(req, 'toilet/intro.html')
+
+def bookmarks(request, id):
+    bookmarks = Bookmarks.objects.filter(user = id)
+
+    context = {
+        'bookmarks' : bookmarks
+    }
+    return render(request, 'toilet/bookmarks.html', context)
+
+def addBookmark(request, toilet_id):
+    toilet = ToiletInfo.objects.get(pk=toilet_id)
+    uid = request.user.id
+    user = get_object_or_404(User, pk=uid)
+
+    if request.method == 'POST' :
+        try :
+            mark = Bookmarks.objects.get(user=user, toilet=toilet)
+            mark.delete()
+        except :
+            mark = Bookmarks()
+            mark.toilet = toilet
+            mark.user = user
+            mark.save()
+    return redirect('toilet:info', toilet_id)
+
+def delBookmark(request, toilet_id):
+    toilet = ToiletInfo.objects.get(pk=toilet_id)
+    uid = request.user.id
+    user = get_object_or_404(User, pk=uid)
+
+    if request.method == 'POST':
+        mark = Bookmarks.objects.get(user=user, toilet=toilet)
+        mark.delete()
+        return redirect('toilet:bookmarks', uid)
 
 
 

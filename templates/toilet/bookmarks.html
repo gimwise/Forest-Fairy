@@ -1,11 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h2>북마크</h2>
-    <div class="list-group">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>화장실 명</th>
+            <th>북마크</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if bookmarks %}
         {% for mark in bookmarks %}
-            <a class="list-group-item list-group-action" href="{% url 'toilet:info' mark.toilet.id %}">{{ mark.toilet.tname }}</a>
+            <tr>
+                <td><a href="{% url 'toilet:info' mark.toilet.id %}">{{ mark.toilet.tname }}</a></td>
+                <td>
+                    <form action="/delBookmark/{{ mark.toilet.id }}/" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-light" id="doneBtn" type="submit" value="해제">
+                    </form>
+            </tr>
         {% endfor %}
-    </div>
+        {% else %}
+            <tr>
+                <td colspan="2">북마크가 없습니다.</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
 
 {% endblock %}
