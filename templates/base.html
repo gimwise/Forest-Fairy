@@ -48,7 +48,7 @@
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">내정보</a></li>
                         <li><a class="dropdown-item" href="#">내가쓴리뷰</a></li>
-                        <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
+                        <li><a class="dropdown-item" href="{% url 'users:bookmarks' user.id %}">즐겨찾기</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{% url 'users:logout' %}">로그아웃</a></li>
                     </ul>

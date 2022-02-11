@@ -36,3 +36,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.toilet.tname
+
+class Bookmarks(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    toilet = models.ForeignKey(ToiletInfo, on_delete=models.CASCADE)
