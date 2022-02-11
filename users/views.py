@@ -49,10 +49,4 @@ def join(request):
         form = UserForm()
         return render(request, 'users/join.html', {'form': form})
 
-def bookmarks(request, id):
-    bookmarks = Bookmarks.objects.filter(user = id)
 
-    context = {
-        'bookmarks' : bookmarks
-    }
-    return render(request, 'toilet/bookmarks.html', context)

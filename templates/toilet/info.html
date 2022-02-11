@@ -111,7 +111,15 @@
                     <text id="biget_x">변기<BR>정보가 없음</text>
                 {% endif %}
         </div>
-          
+
+        <form action="/addBookmark/{{ toilet.id }}/" method="post">
+            {% csrf_token %}
+            {% if exist == None%}
+                <input class="btn btn-success" id="doneBtn" type="submit" value="북마크 등록">
+            {% else %}
+                <input class="btn btn-danger" id="doneBtn" type="submit" value="북마크 취소">
+            {% endif %}
+        </form>
 
         
     </div>

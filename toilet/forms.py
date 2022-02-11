@@ -1,6 +1,6 @@
 from dataclasses import field
 from django import forms
-from .models import ToiletInfo, Comment
+from .models import ToiletInfo, Comment, Bookmarks
 
 class ToiletForm(forms.ModelForm):
     class Meta:

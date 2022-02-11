@@ -10,7 +10,9 @@ urlpatterns = [
     path('<int:id>/',views.info, name='info'),
     path("intro/", views.intro, name="intro"),
     path('admin/', admin.site.urls),
-
+    path('addBookmark/<int:toilet_id>/', views.addBookmark, name="addBookmark"),
+    path('delBookmark/<int:toilet_id>/', views.delBookmark, name="delBookmark"),
+    path('bookmarks/<str:id>/', views.bookmarks, name="bookmarks"),
     path('getJson/', views.getJson, name='getJson'),
     path('getScore/', views.getScore, name='getScore'),
 ]
