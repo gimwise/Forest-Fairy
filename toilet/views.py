@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import get_user_model
 from .models import ToiletInfo, Comment, Bookmarks
@@ -55,6 +56,14 @@ def home(request):
     context = {'toilet_list': toilet_list}
     return render(request, 'home.html', context)
 
+def toptions(answer):
+    if(answer == 'true'):
+        return True
+    elif(answer == 'false'):
+        return False
+    else:
+        return None
+            
 
 def add(request):
     if request.method == "POST":
@@ -64,15 +73,12 @@ def add(request):
             toilet.tlat = request.POST["tlat"]
             toilet.tlong = request.POST["tlong"]
             toilet.tlocation = request.POST["tlocation"]
-            toilet.tpublic = True if request.POST.get(
-                'tpublic', False) else False
-            toilet.tpassword = True if request.POST.get(
-                'tpassword', False) else False
-            toilet.tpaper = True if request.POST.get(
-                'tpaper', False) else False
-            toilet.ttype = True if request.POST.get('ttype', False) else False
-            toilet.tbidget = True if request.POST.get(
-                'tbidget', False) else False
+            if request.POST.get('ttype') != None:
+                toilet.ttype = request.POST.get('ttype')
+            toilet.tpublic = toptions(request.POST.get('tpublic'))
+            toilet.tpassword = toptions(request.POST.get('tpassword'))
+            toilet.tpaper = toptions(request.POST.get('tpaper'))
+            toilet.tbidget = toptions(request.POST.get('tbidget'))
             toilet.save()
             return redirect('toilet:info',toilet.id)
     else:
