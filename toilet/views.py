@@ -1,4 +1,6 @@
 from asyncio.windows_events import NULL
+from pyexpat.errors import messages
+from ssl import AlertDescription
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import get_user_model
 from .models import ToiletInfo, Comment, Bookmarks
@@ -8,6 +10,7 @@ from django.db.models import Avg
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 import json
+from django.contrib import messages
 
 # Create your views here.
 
@@ -67,24 +70,32 @@ def toptions(answer):
 
 def add(request):
     if request.method == "POST":
-        form = ToiletForm(request.POST)
-        if form.is_valid():
-            toilet = form.save(commit=False)
-            toilet.tlat = request.POST["tlat"]
-            toilet.tlong = request.POST["tlong"]
-            toilet.tlocation = request.POST["tlocation"]
-            if request.POST.get('ttype') != None:
-                toilet.ttype = request.POST.get('ttype')
-            toilet.tpublic = toptions(request.POST.get('tpublic'))
-            toilet.tpassword = toptions(request.POST.get('tpassword'))
-            toilet.tpaper = toptions(request.POST.get('tpaper'))
-            toilet.tbidget = toptions(request.POST.get('tbidget'))
-            toilet.save()
-            return redirect('toilet:info',toilet.id)
+        try:
+            toilet_exist = ToiletInfo.objects.get(tlat=request.POST["tlat"], tlong=request.POST["tlong"])
+        except:
+            toilet_exist = None
+        if(toilet_exist == None):
+            form = ToiletForm(request.POST)
+            if form.is_valid():
+                toilet = form.save(commit=False)
+                toilet.tlat = request.POST["tlat"]
+                toilet.tlong = request.POST["tlong"]
+                toilet.tlocation = request.POST["tlocation"]
+                if request.POST.get('ttype') != None:
+                    toilet.ttype = request.POST.get('ttype')
+                toilet.tpublic = toptions(request.POST.get('tpublic'))
+                toilet.tpassword = toptions(request.POST.get('tpassword'))
+                toilet.tpaper = toptions(request.POST.get('tpaper'))
+                toilet.tbidget = toptions(request.POST.get('tbidget'))
+                toilet.save()
+                return redirect('toilet:info',toilet.id)
+        else:
+            messages.warning(request, "위치 중복 경고")
+            return render(request,'toilet/info.html',{'toilet':toilet_exist})
     else:
         form = ToiletForm()
         context = {'form': form}
-    return render(request, 'toilet/add.html', context)
+        return render(request, 'toilet/add.html', context)
 
 
 def info(request, id):

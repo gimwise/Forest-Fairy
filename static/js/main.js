@@ -13,6 +13,8 @@ const csrf = document.getElementsByName('csrfmiddlewaretoken')
 const ratedForm = document.querySelector('.rated-form')
 const ratedScoreObj = document.getElementById('rated-score')
 
+const errorMessage = document.querySelector(".error_messages")
+
 // checked 속성 추가해주는 함수
 const handleStarSelect = (size) => {
     const children = form.children
@@ -95,6 +97,9 @@ const getNumericValue = (stringValue) =>{
     return numericValue
 }
 
+if(errorMessage != null){
+    alert("이미 존재하는 화장실입니다.")
+}
 
 if (one) {
     const arr = [one, two, three, four, five]
