@@ -4,6 +4,11 @@
 <title>화장실 정보</title>
 {% endblock %}
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="error_messages"></div>
+        {% endfor %}
+    {% endif %}
     <div class="info_container">
         <div class="sub">
             <h1>"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
