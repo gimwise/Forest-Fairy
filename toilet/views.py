@@ -46,8 +46,8 @@ def getScore(request):
     return HttpResponse(content=toilet_score_avg, content_type="text/json-comment-filtered; charset=utf-8")
 
 def myComments(req):
-    user = get_object_or_404(User,pk=req.user.id)
-    return render(req, 'toilet/myComments.html', {'user':user})
+    commented_user = get_object_or_404(User,pk=req.user.id)
+    return render(req, 'toilet/myComments.html', {'commented_user':commented_user})
 
 def home(request):
     toilet_list = User.objects.all()
@@ -104,10 +104,15 @@ def info(request, id):
         uid = request.user.id
         user = get_object_or_404(User, pk=uid)
         try:
-            exist = Bookmarks.objects.get(user=user, toilet=toilet)
+            comment_exist = Comment.objects.get(author=user, toilet=toilet)
         except:
-            exist = None
-        context = {'toilet': toilet, 'exist': exist}
+            comment_exist = None
+        try:
+            bookmark_exist = Bookmarks.objects.get(user=user, toilet=toilet)
+        except:
+            bookmark_exist = None
+        print(comment_exist, bookmark_exist)
+        context = {'toilet': toilet, 'comment_exist':comment_exist,'bookmark_exist': bookmark_exist}
         return render(request, 'toilet/info.html', context)
 
 
