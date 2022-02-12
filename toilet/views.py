@@ -111,7 +111,7 @@ def info(request, id):
             bookmark_exist = Bookmarks.objects.get(user=user, toilet=toilet)
         except:
             bookmark_exist = None
-        print(comment_exist, bookmark_exist)
+        # print(comment_exist, bookmark_exist)
         context = {'toilet': toilet, 'comment_exist':comment_exist,'bookmark_exist': bookmark_exist}
         return render(request, 'toilet/info.html', context)
 
