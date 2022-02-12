@@ -9,8 +9,8 @@ img {
 }
 
 header {
-  width: 100%;
-  height: 10%;
+  width: 100vw;
+  height: 8vh;
 }
 
 #section {
@@ -179,7 +179,7 @@ input {
   margin: 5px 0px;
 }
 .navd {
-  width: 80%;
+  width: 40%;
   display: inline-block;
   float: right;
   margin-right: 50px;
