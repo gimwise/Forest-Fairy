@@ -9,8 +9,8 @@
     </tr>
     </thead>
     <tbody>
-    {% if user.comment_set %}
-        {% for rating in user.comment_set.all %}
+    {% if commented_user.comment_set %}
+        {% for rating in commented_user.comment_set.all %}
         <tr>
             <td><a href="{% url 'toilet:info' rating.toilet.id %}">{{ rating }}</a></td>
             <td>{{ rating.score }} / 5</td>
