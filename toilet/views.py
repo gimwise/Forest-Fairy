@@ -45,9 +45,12 @@ def getScore(request):
         toilet_score_avg.append(json.dumps(dict, ensure_ascii=False))
     return HttpResponse(content=toilet_score_avg, content_type="text/json-comment-filtered; charset=utf-8")
 
+def myComments(req):
+    user = get_object_or_404(User,pk=req.user.id)
+    return render(req, 'toilet/myComments.html', {'user':user})
 
 def home(request):
-    toilet_list = ToiletInfo.objects.all()
+    toilet_list = User.objects.all()
 
     context = {'toilet_list': toilet_list}
     return render(request, 'home.html', context)
@@ -71,7 +74,7 @@ def add(request):
             toilet.tbidget = True if request.POST.get(
                 'tbidget', False) else False
             toilet.save()
-            return redirect('/')
+            return redirect('toilet:info',toilet.id)
     else:
         form = ToiletForm()
         context = {'form': form}
