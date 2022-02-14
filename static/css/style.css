@@ -9,13 +9,14 @@ img {
 }
 
 header {
-  width: 100%;
-  height: 10%;
+  width: 100vw;
+  height: 8vh;
 }
 
 #section {
   width: 100%;
   height: 90%;
+  z-index: 1;
 }
 
 select,
@@ -168,6 +169,10 @@ input {
 }
 
 /*------------------------------------------------*/
+.navbar-toggler:active,
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
 .container p {
   margin-top: 100px;
 }
@@ -178,16 +183,26 @@ input {
 .nav-item {
   margin: 5px 0px;
 }
+.navbar-toggler {
+  border: none;
+}
+.navbar > .container-fluid {
+  padding: 0 70px;
+}
+#navbar {
+  padding: 0%;
+  z-index: 2;
+}
 .navd {
-  width: 80%;
+  width: 40vw;
   display: inline-block;
   float: right;
-  margin-right: 50px;
 }
 .n {
   float: right;
   list-style: none;
   margin: 0px;
+  margin-left: auto;
 }
 .n li {
   float: left;
@@ -312,7 +327,7 @@ input {
 .map_wrap {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 93vh;
 }
 #menu_wrap {
   position: absolute;
@@ -435,7 +450,7 @@ input {
 #placesList .item .marker_15 {
   background-position: 0 -654px;
 }
-ㅎ #pagination {
+#pagination {
   margin: 10px auto;
   text-align: center;
 }
@@ -585,4 +600,36 @@ input {
 .not_auth h6 {
   margin: 25px auto;
   text-align: center;
+}
+/* bookmark */
+.card {
+  width: 600px;
+  height: 500px;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 10px;
+}
+.bookmark th,
+.bookmark td {
+  text-align: center;
+}
+.bookmark td {
+  padding: 20px 0px;
+}
+.bookmark-list a {
+  text-decoration: none;
+  color: #0a2a0a;
+}
+.bookmark-list a:hover {
+  text-decoration: none;
+  color: #1cc979;
+}
+
+.card-body {
+  overflow: auto;
+  width: 600px;
+  height: 500px;
+}
+#bookmarkBtn {
+  width: 150px;
 }

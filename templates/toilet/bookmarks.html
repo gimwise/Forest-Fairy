@@ -1,31 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th>화장실 명</th>
-            <th>북마크</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% if bookmarks %}
-        {% for mark in bookmarks %}
-            <tr>
-                <td><a href="{% url 'toilet:info' mark.toilet.id %}">{{ mark.toilet.tname }}</a></td>
-                <td>
-                    <form action="/delBookmark/{{ mark.toilet.id }}/" method="post">
-                        {% csrf_token %}
-                        <input class="btn btn-light" id="doneBtn" type="submit" value="해제">
-                    </form>
-            </tr>
-        {% endfor %}
-        {% else %}
-            <tr>
-                <td colspan="2">북마크가 없습니다.</td>
-            </tr>
-        {% endif %}
-        </tbody>
-    </table>
+<div class="card shadow mb-4 mt-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">즐겨찾기</h6>
+    </div>
+    <div class="card-body">
+        <table class="bookmark table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>화장실 명</th>
+                    <th>북마크</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if bookmarks %}
+                {% for mark in bookmarks %}
+                <tr class="bookmark-list">
+                    <td><a href="{% url 'toilet:info' mark.toilet.id %}">{{ mark.toilet.tname }}</a></td>
+                    <td>
+                        <form action="/delBookmark/{{ mark.toilet.id }}/" method="post">
+                            {% csrf_token %}
+                            <input class="btn btn-success" id="bookmarkBtn" type="submit" value="해제">
+                        </form>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="2">북마크가 없습니다.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 
-{% endblock %}
+    {% endblock %}

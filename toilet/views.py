@@ -1,3 +1,6 @@
+from asyncio.windows_events import NULL
+from pyexpat.errors import messages
+from ssl import AlertDescription
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import get_user_model
 from .models import ToiletInfo, Comment, Bookmarks
@@ -7,6 +10,7 @@ from django.db.models import Avg
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 import json
+from django.contrib import messages
 
 # Create your views here.
 
@@ -45,37 +49,53 @@ def getScore(request):
         toilet_score_avg.append(json.dumps(dict, ensure_ascii=False))
     return HttpResponse(content=toilet_score_avg, content_type="text/json-comment-filtered; charset=utf-8")
 
+def myComments(req):
+    commented_user = get_object_or_404(User,pk=req.user.id)
+    return render(req, 'toilet/myComments.html', {'commented_user':commented_user})
 
 def home(request):
-    toilet_list = ToiletInfo.objects.all()
+    toilet_list = User.objects.all()
 
     context = {'toilet_list': toilet_list}
     return render(request, 'home.html', context)
 
+def toptions(answer):
+    if(answer == 'true'):
+        return True
+    elif(answer == 'false'):
+        return False
+    else:
+        return None
+            
 
 def add(request):
     if request.method == "POST":
-        form = ToiletForm(request.POST)
-        if form.is_valid():
-            toilet = form.save(commit=False)
-            toilet.tlat = request.POST["tlat"]
-            toilet.tlong = request.POST["tlong"]
-            toilet.tlocation = request.POST["tlocation"]
-            toilet.tpublic = True if request.POST.get(
-                'tpublic', False) else False
-            toilet.tpassword = True if request.POST.get(
-                'tpassword', False) else False
-            toilet.tpaper = True if request.POST.get(
-                'tpaper', False) else False
-            toilet.ttype = True if request.POST.get('ttype', False) else False
-            toilet.tbidget = True if request.POST.get(
-                'tbidget', False) else False
-            toilet.save()
-            return redirect('/')
+        try:
+            toilet_exist = ToiletInfo.objects.get(tlat=request.POST["tlat"], tlong=request.POST["tlong"])
+        except:
+            toilet_exist = None
+        if(toilet_exist == None):
+            form = ToiletForm(request.POST)
+            if form.is_valid():
+                toilet = form.save(commit=False)
+                toilet.tlat = request.POST["tlat"]
+                toilet.tlong = request.POST["tlong"]
+                toilet.tlocation = request.POST["tlocation"]
+                if request.POST.get('ttype') != None:
+                    toilet.ttype = request.POST.get('ttype')
+                toilet.tpublic = toptions(request.POST.get('tpublic'))
+                toilet.tpassword = toptions(request.POST.get('tpassword'))
+                toilet.tpaper = toptions(request.POST.get('tpaper'))
+                toilet.tbidget = toptions(request.POST.get('tbidget'))
+                toilet.save()
+                return redirect('toilet:info',toilet.id)
+        else:
+            messages.warning(request, "위치 중복 경고")
+            return render(request,'toilet/info.html',{'toilet':toilet_exist})
     else:
         form = ToiletForm()
         context = {'form': form}
-    return render(request, 'toilet/add.html', context)
+        return render(request, 'toilet/add.html', context)
 
 
 def edit(request, id):
@@ -120,10 +140,15 @@ def info(request, id):
         uid = request.user.id
         user = get_object_or_404(User, pk=uid)
         try:
-            exist = Bookmarks.objects.get(user=user, toilet=toilet)
+            comment_exist = Comment.objects.get(author=user, toilet=toilet)
         except:
-            exist = None
-        context = {'toilet': toilet, 'exist': exist}
+            comment_exist = None
+        try:
+            bookmark_exist = Bookmarks.objects.get(user=user, toilet=toilet)
+        except:
+            bookmark_exist = None
+        # print(comment_exist, bookmark_exist)
+        context = {'toilet': toilet, 'comment_exist':comment_exist,'bookmark_exist': bookmark_exist}
         return render(request, 'toilet/info.html', context)
 
 

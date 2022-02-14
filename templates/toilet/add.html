@@ -36,7 +36,7 @@
                 </label>
             </div>
             <div>
-                <label class="tinfo-title">좌변기</label>
+                <label class="tinfo-title ttype-title">변기 종류</label>
                 <label for="ttype" class='tinfo-icon' id="ttypeBtn">
                     <img id="ttype-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
@@ -166,20 +166,27 @@
             tpublicImg.src = tpublicFiles[1];
         }
     });
+
+    ttypeTitle=document.querySelector(".ttype-title")
+
     ttypeBtn.addEventListener("click", () => {
         let currentOption = ttypeInput.options.selectedIndex;
         if (currentOption == 2) {
             ttypeInput.options.selectedIndex = 0;
+            ttypeTitle.innerText = "변기 종류"
             ttypeImg.src = ttypeFiles[0];
 
         }
         else if (currentOption == 1) {
             ttypeInput.options.selectedIndex++;
+            ttypeTitle.innerText = "양변기"
             ttypeImg.src = ttypeFiles[2];
         }
         else {
             ttypeInput.options.selectedIndex++;
+            ttypeTitle.innerText = "좌변기"
             ttypeImg.src = ttypeFiles[1];
+
         }
     });
 
