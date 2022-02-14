@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th>화장실 명</th>
+        <th>별점</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if commented_user.comment_set %}
+        {% for rating in commented_user.comment_set.all %}
+        <tr>
+            <td><a href="{% url 'toilet:info' rating.toilet.id %}">{{ rating }}</a></td>
+            <td>{{ rating.score }} / 5</td>
+        </tr>
+    {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="2">등록된 평가가 없습니다.</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

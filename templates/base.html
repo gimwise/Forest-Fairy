@@ -30,9 +30,6 @@
                 </div>
                 <div class="navd">
                     <ul class="n">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'toilet:home' %}">home</a>
-                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'toilet:add' %}"> 화장실 등록</a>
@@ -44,10 +41,10 @@
                     <li class="nav-item dropdown">
                       
                         {% if user.is_authenticated %}
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">프로필</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">내 정보</a>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">내정보</a></li>
-                        <li><a class="dropdown-item" href="#">내가쓴리뷰</a></li>
+                        <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">프로필</a></li>
+                        <li><a class="dropdown-item" href="{% url 'toilet:myComments' %}">내가쓴리뷰</a></li>
                         <li><a class="dropdown-item" href="{% url 'toilet:bookmarks' user.id %}">즐겨찾기</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{% url 'users:logout' %}">로그아웃</a></li>
