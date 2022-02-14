@@ -98,6 +98,25 @@ def add(request):
         return render(request, 'toilet/add.html', context)
 
 
+def edit(request, id):
+    post = ToiletInfo.objects.get(id=id)
+    if request.method == "POST":
+        form = ToiletForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            post.tpublic = form.cleaned_data['tpublic']
+            post.tpassword = form.cleaned_data['tpassword']
+            post.tpaper = form.cleaned_data['tpaper']
+            post.ttype = form.cleaned_data['ttype']
+            post.tbidget = form.cleaned_data['tbidget']
+            post.save()
+            return redirect('/'+str(post.pk))
+    else:
+        form = ToiletForm()
+        context = {'form': form}
+        return render(request, 'toilet/edit.html', context)
+
+
 def info(request, id):
     if request.method == "POST":
         registForm = CommentForm(request.POST)
