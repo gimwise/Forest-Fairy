@@ -1,26 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th>화장실 명</th>
-        <th>별점</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% if commented_user.comment_set %}
-        {% for rating in commented_user.comment_set.all %}
-        <tr>
-            <td><a href="{% url 'toilet:info' rating.toilet.id %}">{{ rating }}</a></td>
-            <td>{{ rating.score }} / 5</td>
-        </tr>
-    {% endfor %}
-    {% else %}
-        <tr>
-            <td colspan="2">등록된 평가가 없습니다.</td>
-        </tr>
-    {% endif %}
-    </tbody>
-</table>
+<div class="card shadow mb-4 mt-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">내가 쓴 리뷰</h6>
+    </div>
+    <div class="card-body">
+        <table class="bookmark table">
+            <colgroup>
+                <col style="width: 60%;">
+                <col style="width: 40%;">
+            </colgroup>
+            <thead class="thead-dark">
+                <tr>
+                    <th>화장실 명</th>
+                    <th>별점</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if commented_user.comment_set %}
+                {% for rating in commented_user.comment_set.all %}
+                <tr class="bookmark-list">
+                    <td><a href="{% url 'toilet:info' rating.toilet.id %}">{{ rating }}</a></td>
+                    <td>{{ rating.score }} / 5</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="2">등록된 평가가 없습니다.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 {% endblock %}
