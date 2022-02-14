@@ -468,6 +468,14 @@
 
     // 위치 가져오기 버튼 클릭시
     function getCurrentPosBtn(){
+        document.getElementById('keyword').value=null;
+
+        let listEl = document.getElementById('placesList');
+        let paginationEl = document.getElementById('pagination');
+
+        removeAllChildNods(listEl);
+        removeAllChildNods(paginationEl);
+
         navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
     };
 
