@@ -16,50 +16,13 @@
             </h1><br>
 
             <div class="info_plus">
-                <p><span class="material-icons-outlined" style="font-size:27px;">place</span>{{ toilet.tlocation }}</p>
+                <p><span class="material-icons-outlined">place</span>{{ toilet.tlocation }}</p>
                 <p><span class="material-icons-outlined">phone_in_talk</span> {{ toilet.tnumber }}</p>
                 <p><span class="material-icons-outlined">schedule </span> {{ toilet.topen }}</p>
             </div>
         </div>
         <hr size="3.5" style="margin-top: 30px;">
 
-        <!-- review starts here -->
-        {% if user.is_authenticated %}
-        <div class="ratings">
-            <h5>화장실 평점</h5>
-            <div class="col text-center">
-                {% if comment_exist %}
-                    <div class="rated-form">
-                        <button type="submit" class="fa fa-star fa-4x" id="first"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="second"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="third"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
-                    </div>
-                    <div><span id="rated-score">{{comment_exist.score}}</span> / 5</div>
-                {% else %}
-                    <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
-                        {% csrf_token %}
-                        <button type="submit" class="fa fa-star fa-4x" id="first"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="second"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="third"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
-                        <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
-                    </form>
-                    <br>
-                    <div id="confirm-box"></div>
-                {% endif %}
-            </div>
-        </div>
-        {% else %}
-        <div class="not_auth">
-            <h6>
-                리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
-            </h6>
-        </div>
-        {% endif %}
-
-        <hr size="3.5"  style="margin-top: 20px;">   
         <div class="info_badge">
             <h5 >화장실 정보</h5>
             <div class="badge_container">
@@ -68,10 +31,10 @@
                     <text>비데</text>
                 {% elif toilet.tbidget == False %}
                     <img src="{% static 'img/badge/bidet_N.png' %}">
-                    <text id="biget_x">비데 X</text>                
+                    <text id="biget_x">비데</text>                
                 {% else %}
                     <img src="{% static 'img/badge/question.png' %}">
-                    <text id="biget_x">비데<BR>정보가 없음</text>
+                    <text id="biget_xx">비데<BR>정보가 없음</text>
                 {% endif %}
             </div>
 
@@ -81,10 +44,10 @@
                     <text>휴지</text>
                 {% elif toilet.tpaper == False %}
                     <img src="{% static 'img/badge/tissue_N.png' %}">
-                    <text id="biget_x">휴지 X</text>
+                    <text id="biget_x">휴지</text>
                 {% else %}
                     <img src="{% static 'img/badge/question.png' %}">
-                    <text id="biget_x">휴지<BR>정보가 없음</text>
+                    <text id="biget_xx">휴지<BR>정보가 없음</text>
                 {% endif %}
             </div>
 
@@ -94,10 +57,10 @@
                     <text>비밀번호</text>
                 {% elif toilet.tpassword == False %}
                     <img src="{% static 'img/badge/pw_N.png' %}">
-                    <text id="biget_x">비밀번호 X</text>
+                    <text id="biget_x">비밀번호</text>
                 {% else %}
                     <img src="{% static 'img/badge/question.png' %}">
-                    <text id="biget_x">비밀번호<BR>정보가 없음</text>
+                    <text id="biget_xx">비밀번호<BR>정보가 없음</text>
                 {% endif %}
             </div>
             
@@ -107,10 +70,10 @@
                     <text>남녀분리</text>
                 {% elif toilet.tpublic == False %}
                     <img src="{% static 'img/badge/mw_N.png' %}">
-                    <text id="biget_x">남녀분리 X</text>
+                    <text id="biget_x">남녀분리</text>
                 {% else %}
                     <img src="{% static 'img/badge/question.png' %}">
-                    <text id="biget_x">남녀분리<BR>정보가 없음</text>
+                    <text id="biget_xx">남녀분리<BR>정보가 없음</text>
                 {% endif %}
             </div>
             
@@ -124,19 +87,59 @@
                 </div>        
                 {% else %}
                     <img src="{% static 'img/badge/question.png' %}">
-                    <text id="biget_x">변기<BR>정보가 없음</text>
+                    <text id="biget_xx">변기<BR>정보가 없음</text>
                 {% endif %}
+        
+            </div>
         </div>
 
-        <form action="/addBookmark/{{ toilet.id }}/" method="post">
-            {% csrf_token %}
-            {% if bookmark_exist == None%}
-                <input class="btn btn-success" id="doneBtn" type="submit" value="북마크 등록">
-            {% else %}
-                <input class="btn btn-danger" id="doneBtn" type="submit" value="북마크 취소">
-            {% endif %}
-        </form>
+        <hr size="3.5" style="margin-top: 15px;">
 
+        <!-- review starts here -->
+        {% if user.is_authenticated %}
+        <div class="ratings">
+            <h5>화장실 평점</h5>
+            <div class="col text-center">
+                {% if comment_exist %}
+                <div class="rated-form">
+                    <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                </div>
+                <div><span id="rated-score">{{comment_exist.score}}</span> / 5</div>
+                {% else %}
+                <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
+                    {% csrf_token %}
+                    <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                    <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                </form>
+                <br>
+                <div id="confirm-box"></div>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="not_auth">
+            <h6>
+                리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
+            </h6>
+        </div>
+        {% endif %}
+        <div  class ="bookmark">
+            <form action="/addBookmark/{{ toilet.id }}/" method="post">
+                {% csrf_token %}
+                {% if bookmark_exist == None%}
+                    <input class="btn btn-success" id="doneBtn" type="submit" value="북마크 등록">
+                {% else %}
+                    <input class="btn btn-danger" id="doneBtn" type="submit" value="북마크 취소">
+                {% endif %}
+            </form>
+        </div>
         
     </div>
 

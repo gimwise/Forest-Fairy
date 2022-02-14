@@ -283,7 +283,11 @@ input {
 }
 #doneBtn {
   width: 150px;
-  margin: 70px auto;
+  margin: -25px auto;
+  float: right;
+  padding: 7px;
+  font-size: 18px;
+
 }
 .tinput {
   margin-top: 100px;
@@ -548,22 +552,26 @@ input {
 .info_plus p {
   font-size: 18px;
   padding-bottom: 3px;
+  display: flex;
 }
 .info_plus span {
   margin-left: 20px;
   margin-right: 5px;
+  font-size:27px;
 }
-
+.ratings{
+  padding-bottom: 40px;
+}
 .info_badge h5,
 .ratings h5 {
   margin-left: 25px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .badge_container {
   text-align: center;
   font-weight: bold;
-  display: inline-block;
+  display: inline-table;
   width: 100px;
   height: 150px;
   margin-left: 25px;
@@ -575,14 +583,73 @@ input {
 .badge_container #biget_x {
   color: #e2e2e2;
 }
+.badge_container #biget_xx {
+  color: #e2e2e2;
 
+}
 .ratings button {
   background-color: white;
   border: none;
   margin: auto 10px;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 .not_auth h6 {
   margin: 25px auto;
   text-align: center;
+}
+
+/* intro */
+.intro{
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+.intro_wrap1{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px auto;
+  background-color: #1cc979;
+}
+.intro_container {
+  width: 30rem;
+  height: 20rem;
+  padding-top: 6rem;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  position: relative;
+  border: double 8px;
+  border-color: #1cc979;
+}
+.intro_container h6{
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+.intro_container h1{
+  margin: 0 0;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: -30px;
+  margin-top: 0px;
+   font-weight: bold;
+ 
+}
+.intro_container h1 img{
+  width: 60px;
+  margin: 0 0 50px -5px;
+}
+.intro_wrap2{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px auto;
+
 }
