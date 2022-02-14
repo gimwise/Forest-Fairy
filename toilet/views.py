@@ -1,13 +1,13 @@
-from asyncio.windows_events import NULL
+# from asyncio.windows_events import NULL
 from pyexpat.errors import messages
-from ssl import AlertDescription
+# from ssl import AlertDescription
 from django.shortcuts import redirect, render, get_object_or_404
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 from .models import ToiletInfo, Comment, Bookmarks
 from users.models import User
 from .forms import ToiletForm, CommentForm
 from django.db.models import Avg
-from django.core import serializers
+# from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 import json
 from django.contrib import messages
@@ -191,3 +191,5 @@ def delBookmark(request, toilet_id):
         mark = Bookmarks.objects.get(user=user, toilet=toilet)
         mark.delete()
         return redirect('toilet:bookmarks', uid)
+
+
