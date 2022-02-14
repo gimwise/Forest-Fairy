@@ -302,7 +302,10 @@ input {
   float: right;
   padding: 7px;
   font-size: 18px;
-
+}
+#addDoneBtn {
+  width: 150px;
+  margin: 70px auto;
 }
 .tinput {
   margin-top: 100px;
@@ -572,9 +575,9 @@ input {
 .info_plus span {
   margin-left: 20px;
   margin-right: 5px;
-  font-size:27px;
+  font-size: 27px;
 }
-.ratings{
+.ratings {
   padding-bottom: 40px;
 }
 .info_badge h5,
@@ -600,7 +603,6 @@ input {
 }
 .badge_container #biget_xx {
   color: #e2e2e2;
-
 }
 .ratings button {
   background-color: white;
@@ -614,12 +616,12 @@ input {
 }
 
 /* intro */
-.intro{
+.intro {
   width: 100vw;
   justify-content: center;
   align-items: center;
 }
-.intro_wrap1{
+.intro_wrap1 {
   width: 100vw;
   height: auto;
   display: flex;
@@ -640,33 +642,31 @@ input {
   border: double 8px;
   border-color: #1cc979;
 }
-.intro_container h6{
+.intro_container h6 {
   margin-left: 15px;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 3px;
 }
-.intro_container h1{
+.intro_container h1 {
   margin: 0 0;
   text-align: center;
   font-size: 50px;
   margin-bottom: -30px;
   margin-top: 0px;
-   font-weight: bold;
- 
+  font-weight: bold;
 }
-.intro_container h1 img{
+.intro_container h1 img {
   width: 60px;
   margin: 0 0 50px -5px;
 }
-.intro_wrap2{
+.intro_wrap2 {
   width: 100vw;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px auto;
-
 }
 
 /* bookmark */
@@ -701,4 +701,3 @@ input {
 #bookmarkBtn {
   width: 150px;
 }
-
