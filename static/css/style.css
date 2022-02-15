@@ -22,6 +22,7 @@ header {
 select,
 input {
   cursor: default;
+  border :none;
 }
 
 /* map */
