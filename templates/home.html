@@ -56,7 +56,7 @@
             <div class="option">
                 <div>
                     <form onsubmit="searchPlaces(); return false;">
-                        <h5 class="mt-2 mb-2" style="font-size: 13px; font-weight: bold;";">주변 화장실을 검색하고 등록해보세요!</h5>
+                        <h5 class="mt-2 mb-2" style="font-size: 13px; font-weight: bold;">주변 화장실을 검색하고 등록해보세요!</h5>
                         <div style="display: flex; margin: 10px;">
                             <img src="{% static 'img/level_2.png' %}" style="width: 20px; height: 20px;"><h6>주변 화장실</h6>
                             <img src="{% static 'img/location.png' %}" style="width: 20px; height: 20px;"><h6>등록 가능한 화장실</h6>
@@ -113,6 +113,9 @@
         return markerImage;
     }
 
+    let cmarkers=[];
+
+    let jsonPositions = [];
 
     // json 형식으로 화장실 정보 불러와서 마커 생성 및 이벤트 등록
     $.ajax({
@@ -120,9 +123,8 @@
         dataType : "json",
         success :
             function(positions){
-                cmarkers=[];
-
                 for(let i =0 ; i<positions.length; i++){
+                    jsonPositions.push(positions[i]);
                     // 마커 이미지의 이미지 크기
                     let imageSize = new kakao.maps.Size(35, 35);
 
@@ -156,7 +158,7 @@
 
                     // 마커에 표시할 인포윈도우를 생성합니다
                     let infowindow = new kakao.maps.InfoWindow({
-                        content: "<div>" + positions[i].tname + "<br>" + score + "</div>" // 인포윈도우에 표시할 내용
+                        content: '<div class="map-infowindow" style="padding:5px;width:150px;text-align:center;">' + positions[i].tname + '</div>' // 인포윈도우에 표시할 내용
                     });
 
                     // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
@@ -179,7 +181,6 @@
                 clusterer.addMarkers(cmarkers);
             }
     })
-
     kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
     // 현재 지도 레벨에서 1레벨 확대한 레벨
     var level = map.getLevel()-1;
@@ -201,9 +202,7 @@
             infowindow.close();
         };
     }
-</script>
 
-<script>
     // 마커를 담을 배열입니다
     let markers = [];
 
@@ -270,51 +269,80 @@
         removeMarker();
 
         for ( let i=0; i<places.length; i++ ) {
+            let placePosition, marker, itemEl;
 
-            // 마커를 생성하고 지도에 표시합니다
-            let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-                marker = addMarker(placePosition, i, places[i].place_name, places[i].address_name),
+            placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
+
+            let sameMarker = cmarkers.find(v=>v.Gb === places[i].place_name);
+
+            if(sameMarker != null){
+                marker = cmarkers.find(v=>v.Gb === places[i].place_name);
                 itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
-            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-            // LatLngBounds 객체에 좌표를 추가합니다
-            bounds.extend(placePosition);
-
-            // 마커와 검색결과 항목에 mouseover 했을때
-            // 해당 장소에 인포윈도우에 장소명을 표시합니다
-            // mouseout 했을 때는 인포윈도우를 닫습니다
-            (function(marker, title) {
-                kakao.maps.event.addListener(marker, 'mouseover', function() {
-                    displayInfowindow(marker, title);
-                });
-
-                kakao.maps.event.addListener(marker, 'mouseout', function() {
-                    infowindow.close();
-                });
+                bounds.extend(placePosition);
 
                 itemEl.onmouseover =  function () {
-                    displayInfowindow(marker, title);
+                    displayInfowindow(marker, places[i].place_name);
                 };
-                
-                itemEl.onclick=function(){
-                    let result=confirm("화장실을 등록하시겠습니까?");
-                    if (result){
-                        let placeLocation=placePosition;
-                        let tname = places[i].place_name;
-                        let taddress = places[i].address_name;
-                        localStorage.setItem("placeLocation",JSON.stringify(placeLocation));
-                        localStorage.setItem("tname",JSON.stringify(tname));
-                        localStorage.setItem("taddress",JSON.stringify(taddress));
-                        location.href = '/add/';
-                    }
-                }
-
                 itemEl.onmouseout =  function () {
                     infowindow.close();
                 };
-            })(marker, places[i].place_name);
 
-            fragment.appendChild(itemEl);
+                itemEl.onclick=function(){
+                    let index = jsonPositions.find(v=>v.tname === places[i].place_name).pk;
+                    //console.log(index);
+
+                    let url = window.location.href + index;
+                    location.href = url;
+
+                }
+                fragment.appendChild(itemEl);
+            }
+            else{
+                marker = addMarker(placePosition, i, places[i].place_name, places[i].address_name);
+                itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+
+                // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해 LatLngBounds 객체에 좌표를 추가합니다
+                bounds.extend(placePosition);
+
+                // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시합니다
+                // mouseout 했을 때는 인포윈도우를 닫습니다
+                (function(marker, title) {
+                    kakao.maps.event.addListener(marker, 'mouseover', function() {
+                        displayInfowindow(marker, title);
+                    });
+
+                    kakao.maps.event.addListener(marker, 'mouseout', function() {
+                        infowindow.close();
+                    });
+
+                    itemEl.onmouseover =  function () {
+                        displayInfowindow(marker, title);
+                    };
+
+                    itemEl.onclick=function(){
+                        let result=confirm("화장실을 등록하시겠습니까?");
+                        if (result){
+                            let placeLocation=placePosition;
+                            let tname = places[i].place_name;
+                            let taddress = places[i].address_name;
+                            localStorage.setItem("placeLocation",JSON.stringify(placeLocation));
+                            localStorage.setItem("tname",JSON.stringify(tname));
+                            localStorage.setItem("taddress",JSON.stringify(taddress));
+                            location.href = '/add/';
+                        }
+                    }
+
+                    itemEl.onmouseout =  function () {
+                        infowindow.close();
+                    };
+                })(marker, places[i].place_name);
+
+                fragment.appendChild(itemEl);
+            }
+
+
+
+
         }
 
         // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
@@ -427,7 +455,7 @@
     // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
     // 인포윈도우에 장소명을 표시합니다
     function displayInfowindow(marker, title) {
-        let content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+        let content = '<div class="map-infowindow" style="padding:5px;width:150px;text-align:center;z-index:1;">' + title + '</div>';
 
         infowindow.setContent(content);
         infowindow.open(map, marker);
