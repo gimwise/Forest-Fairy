@@ -52,23 +52,23 @@
     <div class="map_wrap">
         <div id="map" style="width:100vw;height:92vh;position:relative;overflow:hidden;"></div>
     
-        <div id="menu_wrap" class="bg_white">
+        <div id="menu_wrap" class="bg_white" style="width:20%;">
             <div class="option">
                 <div>
-                    <form onsubmit="searchPlaces(); return false;">
-                        <h5 class="mt-2 mb-2" style="font-size: 13px; font-weight: bold;">주변 화장실을 검색하고 등록해보세요!</h5>
-                        <div style="display: flex; margin: 10px;">
-                            <img src="{% static 'img/level_2.png' %}" style="width: 20px; height: 20px;"><h6>주변 화장실</h6>
-                            <img src="{% static 'img/location.png' %}" style="width: 20px; height: 20px;"><h6>등록 가능한 화장실</h6>
+                    <form onsubmit="searchPlaces(); return false;" style="margin-bottom: 20px; padding: 10px;">
+                        <h5 class="mt-2 mb-2" style="font-size: 20px; font-weight: bold; ">주변 화장실을 검색하고 등록해보세요!</h5>
+                        <div style="display: flex;  margin: 20px; justify-content: center;">
+                            <img src="{% static 'img/level_2.png' %}" style="width: 25px; height: 25px; "><h4 style="font-size: 15px;">주변 화장실</h4>
+                            <img src="{% static 'img/location.png' %}" style="width: 25px; height: 25px;"><h4 style="font-size: 15px;">등록 가능한 화장실</h4>
                         </div>
-                        <input type="text" id="keyword" size="15"> 
-                        <button type="submit">검색</button> 
+                        <input type="text" id="keyword" size="15" style="width: 70%; height: 30px;" > 
+                        <button type="submit" style="width: 20%; height: 30px; border-radius: 10px; font-weight: bold;">검색</button> 
                     </form>
                 </div>
             </div>
             <hr>
-            <div>
-                <button type="button" id="currentPos" style="padding: 3px; margin:5px; "class="btn btn-success mb-3" onclick="getCurrentPosBtn()">내 위치로 이동</button>
+            <div style="margin:10px;">
+                <button type="button" id="currentPos" style="margin-left: 20px; padding: 3px; height: 30px; width: 80%;"class="btn btn-success mb-3" onclick="getCurrentPosBtn()">내 위치로 이동</button>
             </div>
             <ul id="placesList"></ul>
             <div id="pagination"></div>
