@@ -13,6 +13,7 @@
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- google font -->
+        
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Two+Tone|Material+Icons+Outlined" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">   
@@ -22,47 +23,6 @@
     </head>
     <body>
         <header>
-            <!-- <nav class="bg bg-light fixed-top">
-                <div class="logo">
-                    <a class="nav-logo" href="{% url 'toilet:home' %}" class="header_logo">
-                        <img src="{% static 'img/fairy.png' %}" class="log-img">
-                        수피아</a>  
-                </div>
-                <div class="navd">
-                    <ul class="n">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'toilet:add' %}"> 화장실 등록</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'toilet:intro' %}">소개</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      
-                        {% if user.is_authenticated %}
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">내 정보</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">프로필</a></li>
-                        <li><a class="dropdown-item" href="{% url 'toilet:myComments' %}">내가쓴리뷰</a></li>
-                        <li><a class="dropdown-item" href="{% url 'toilet:bookmarks' user.id %}">즐겨찾기</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'users:logout' %}">로그아웃</a></li>
-                    </ul>
-                        {%else%}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:login' %}">로그인</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:join' %}">회원가입</a>
-                        </li>
-                        {% endif %}
-                    
-                    </li>
-                  </ul>
-                </div>
-               
-            </nav>         -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
                 <div class="container-fluid">
                   <a class="navbar-brand nav-logo header_logo" href="{% url 'toilet:home' %}"> 
@@ -78,11 +38,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'toilet:home' %}">home</a>
                     </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'toilet:add' %}"> 화장실 등록</a>
-                    </li>
-                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'toilet:intro' %}">소개</a>
                     </li>
@@ -105,12 +60,9 @@
                             <a class="nav-link" href="{% url 'users:join' %}">회원가입</a>
                         </li>
                         {% endif %}
-                    
                     </li>
                   </ul>
                 </div>
-
-
                 </div>
               </nav>
         </header>
