@@ -10,7 +10,7 @@ img {
 
 header {
   width: 100vw;
-  height: 8vh;
+  height: auto;
 }
 
 #section {
@@ -22,11 +22,10 @@ header {
 select,
 input {
   cursor: default;
-  border :none;
+  border: none;
 }
 
 /* map */
-
 
 /* --------- */
 
@@ -304,7 +303,6 @@ input {
 }
 #doneBtn {
   width: 150px;
-;
 }
 #addDoneBtn {
   width: 150px;
@@ -633,7 +631,6 @@ input {
   padding: 20px auto;
   background-color: #1cc979;
   box-shadow: 0 6px 20px rgb(0 0 0 / 25%), 0 5px 15px rgba(0, 0, 0, 0.22);
-
 }
 .intro_container1 {
   width: 30rem;
@@ -665,8 +662,8 @@ input {
 }
 .intro_wrap2 {
   width: 100vw;
-margin-top: 30px;
-    height: auto;
+  margin-top: 30px;
+  height: auto;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -686,7 +683,7 @@ margin-top: 30px;
   /* border: double 8px; */
   background-color: white;
 }
-.intro_container2 text{
+.intro_container2 text {
   font-family: Georgia, "Malgun Gothic", serif;
   font-size: 20px;
 }
@@ -706,29 +703,27 @@ margin-top: 30px;
   margin-top: 70px;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   position: relative;
-    border: none;
+  border: none;
   background-color: #f0f0f0;
-  
 }
-.intro_container3 p{
+.intro_container3 p {
   text-align: center;
   font-size: 35px;
   margin: 35px;
   font-weight: bold;
 }
-.intro_container3 img{
+.intro_container3 img {
   width: 40px;
-
 }
-.intro_register{
+.intro_register {
   width: 100vw;
   display: flex;
   justify-content: center;
 }
-.intro_register img{
+.intro_register img {
   width: 100%;
 }
-.intro_register_box{
+.intro_register_box {
   width: 250px;
   height: 300px;
   display: inline-grid;
@@ -736,23 +731,21 @@ margin-top: 30px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   border-radius: 3px;
   background-color: white;
-
-
 }
-.intro_register_text{
+.intro_register_text {
   width: 250px;
   text-align: center;
   margin-bottom: 25px;
 }
-.intro_register_text text{
+.intro_register_text text {
   font-weight: bold;
 }
-.number_circle{
+.number_circle {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background-color: white;
-  transform:translate(200%,-50%);
+  transform: translate(200%, -50%);
   text-align: center;
   margin-bottom: -30px;
 }
@@ -773,7 +766,7 @@ margin-top: 30px;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   position: relative;
   /* border: double 8px; */
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
 }
 /* bookmark */
 #infoBtn {
