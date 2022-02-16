@@ -118,38 +118,46 @@ def edit(request, id):
 
 
 def info(request, id):
-    if request.method == "POST":
-        registForm = CommentForm(request.POST)
-        if registForm.is_valid():
-            rating = registForm.save(commit=False)
-            uid = request.user.id
-            print(uid)
-            tid = request.POST.get('tid')
-            rating.score = request.POST.get('score')
-            rating.author = get_object_or_404(User, pk=uid)
-            rating.toilet = get_object_or_404(ToiletInfo, pk=tid)
-            rating.save()
-            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            return JsonResponse({'success': 'true', 'score': rating.score}, safe=False)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            registForm = CommentForm(request.POST)
+            if registForm.is_valid():
+                rating = registForm.save(commit=False)
+                uid = request.user.id
+                print(uid)
+                tid = request.POST.get('tid')
+                rating.score = request.POST.get('score')
+                rating.author = get_object_or_404(User, pk=uid)
+                rating.toilet = get_object_or_404(ToiletInfo, pk=tid)
+                rating.save()
+                print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                return JsonResponse({'success': 'true', 'score': rating.score}, safe=False)
+            else:
+                print(registForm.errors)
+                print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                print(registForm.non_field_errors)
         else:
-            print(registForm.errors)
-            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            print(registForm.non_field_errors)
-    else:
+            toilet = get_object_or_404(ToiletInfo, pk=id)
+            uid = request.user.id
+            user = get_object_or_404(User, pk=uid)
+            try:
+                comment_exist = Comment.objects.get(author=user, toilet=toilet)
+            except:
+                comment_exist = None
+            try:
+                bookmark_exist = Bookmarks.objects.get(user=user, toilet=toilet)
+            except:
+                bookmark_exist = None
+            # print(comment_exist, bookmark_exist)
+            context = {'toilet': toilet, 'comment_exist':comment_exist,'bookmark_exist': bookmark_exist}
+            return render(request, 'toilet/info.html', context)
+    else :
         toilet = get_object_or_404(ToiletInfo, pk=id)
-        uid = request.user.id
-        user = get_object_or_404(User, pk=uid)
-        try:
-            comment_exist = Comment.objects.get(author=user, toilet=toilet)
-        except:
-            comment_exist = None
-        try:
-            bookmark_exist = Bookmarks.objects.get(user=user, toilet=toilet)
-        except:
-            bookmark_exist = None
-        # print(comment_exist, bookmark_exist)
-        context = {'toilet': toilet, 'comment_exist':comment_exist,'bookmark_exist': bookmark_exist}
+        avg = toilet.comment_set.aggregate(avg=Avg('score'))
+        context = {'toilet': toilet, 'comment_exist':avg}
         return render(request, 'toilet/info.html', context)
+
+
 
 
 def intro(req):

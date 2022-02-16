@@ -121,6 +121,33 @@
                 </div>
             </div>
         {% else %}
+            <div class="ratings">
+                <h5>화장실 평점</h5>
+                <div class="col text-center">
+                    {% if comment_exist %}
+                        <div class="rated-form">
+                            <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                        </div>
+                        <div>
+                            <span id="rated-score">{{comment_exist.avg}}</span> / 5.0</div>
+                    {% else %}
+                        <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
+                            {% csrf_token %}
+                            <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                        </form>
+                        <br>
+                        <div id="confirm-box"></div>
+                    {% endif %}
+                </div>
+            </div>
             <div class="not_auth">
                 <h6>
                     리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
