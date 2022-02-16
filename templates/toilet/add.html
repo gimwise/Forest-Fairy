@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4" id="tfinfo_form">
+<section class="bgsection bg-light">
+<div class="container" id="tfinfo_form">
     <form action="{% url 'toilet:add' %}" method="POST">
         {% csrf_token %}
         <h5 class="text-center" id="tname"></h5>
@@ -56,6 +57,7 @@
         </div>
     </form>
 </div>
+</section>
 <script>
     // 제목
     const title = document.getElementById('tname');
