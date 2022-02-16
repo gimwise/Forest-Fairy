@@ -118,7 +118,23 @@
                         </form>
                         <br>
                         <div id="confirm-box"></div>
+
                     {% endif %}
+                </div>
+            </div>
+            <div id="info-buttons">
+                <div>
+                    <a class="btn btn-success" id="infoBtnn" href="{% url 'toilet:edit' toilet.id %}">수정</a>
+                </div>
+                <div  class ="bookmark">
+                    <form action="/addBookmark/{{ toilet.id }}/" method="post">
+                        {% csrf_token %}
+                        {% if bookmark_exist == None%}
+                            <input class="btn btn-success" id="infoBtn" type="submit" value="북마크 등록">
+                        {% else %}
+                            <input class="btn btn-danger" id="infoBtn" type="submit" value="북마크 취소">
+                        {% endif %}
+                    </form>
                 </div>
             </div>
         {% else %}
@@ -154,19 +170,11 @@
                     리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
                 </h6>
             </div>
+            <div>
+                <a class="btn btn-success" id="infoBtnn" href="{% url 'toilet:edit' toilet.id %}">수정</a>
+            </div>
         {% endif %}
-        <div  class ="bookmark">
-            <form action="/addBookmark/{{ toilet.id }}/" method="post">
-                {% csrf_token %}
-                {% if bookmark_exist == None%}
-                    <input class="btn btn-success" id="infoBtn" type="submit" value="북마크 등록">
-                {% else %}
-                    <input class="btn btn-danger" id="infoBtn" type="submit" value="북마크 취소">
-                {% endif %}
-            </form>
-        </div>
-            <a class="btn btn-success" id="infoBtnn" href="{% url 'toilet:edit' toilet.id %}">수정</a>
-        </div>
+
 
 
     </div>

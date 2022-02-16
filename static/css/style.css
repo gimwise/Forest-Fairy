@@ -28,8 +28,17 @@ input {
   border: none;
 }
 
-/* map */
-
+/* info-buttons */
+#info-buttons{
+  width:100%;
+  margin-top: 40px;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#info-buttons>div{
+  margin : 5px;
+}
 /* --------- */
 
 .nav-item {
@@ -579,9 +588,6 @@ input {
   margin-left: 20px;
   margin-right: 5px;
   font-size: 27px;
-}
-.ratings {
-  padding-bottom: 50px;
 }
 .info_badge h5,
 .ratings h5 {
