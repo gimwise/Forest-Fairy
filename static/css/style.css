@@ -687,6 +687,7 @@ margin-top: 30px;
   background-color: white;
 }
 .intro_container2 text{
+  font-family: Georgia, "Malgun Gothic", serif;
   font-size: 20px;
 }
 .intro_wrap3 {
@@ -734,7 +735,7 @@ margin-top: 30px;
   margin: auto 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   border-radius: 3px;
-  background-color: #e5fdf2;
+  background-color: white;
 
 
 }
@@ -750,7 +751,7 @@ margin-top: 30px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #e5fdf2;
+  background-color: white;
   transform:translate(200%,-50%);
   text-align: center;
   margin-bottom: -30px;
