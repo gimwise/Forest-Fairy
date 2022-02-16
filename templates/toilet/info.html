@@ -90,46 +90,43 @@
                     <img src="{% static 'img/badge/question.png' %}">
                     <text id="biget_xx">변기<BR>정보가 없음</text>
                 {% endif %}
-        
             </div>
-        </div>
-
         <hr size="3.5" style="margin-top: 15px;">
 
         <!-- review starts here -->
         {% if user.is_authenticated %}
-        <div class="ratings">
-            <h5>화장실 평점</h5>
-            <div class="col text-center">
-                {% if comment_exist %}
-                <div class="rated-form">
-                    <button type="submit" class="fa fa-star fa-4x" id="first"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="second"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="third"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+            <div class="ratings">
+                <h5>화장실 평점</h5>
+                <div class="col text-center">
+                    {% if comment_exist %}
+                        <div class="rated-form">
+                            <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                        </div>
+                        <div><span id="rated-score">{{comment_exist.score}}</span> / 5</div>
+                    {% else %}
+                        <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
+                            {% csrf_token %}
+                            <button type="submit" class="fa fa-star fa-4x" id="first"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="second"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="third"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
+                            <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
+                        </form>
+                        <br>
+                        <div id="confirm-box"></div>
+                    {% endif %}
                 </div>
-                <div><span id="rated-score">{{comment_exist.score}}</span> / 5</div>
-                {% else %}
-                <form action="{% url 'toilet:info' toilet.id %}" method="POST" class="rate-form" id="{{toilet.id}}">
-                    {% csrf_token %}
-                    <button type="submit" class="fa fa-star fa-4x" id="first"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="second"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="third"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="fourth"></button>
-                    <button type="submit" class="fa fa-star fa-4x" id="fifth"></button>
-                </form>
-                <br>
-                <div id="confirm-box"></div>
-                {% endif %}
             </div>
-        </div>
         {% else %}
-        <div class="not_auth">
-            <h6>
-                리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
-            </h6>
-        </div>
+            <div class="not_auth">
+                <h6>
+                    리뷰 작성을 위해 <a href="{% url 'users:join' %}">회원가입</a> 또는 <a href="{% url 'users:login' %}">로그인</a>을 진행해주세요.
+                </h6>
+            </div>
         {% endif %}
         <div  class ="bookmark">
             <form action="/addBookmark/{{ toilet.id }}/" method="post">
@@ -141,6 +138,9 @@
                 {% endif %}
             </form>
         </div>
+        </div>
+
+
         
     </div>
 
