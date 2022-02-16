@@ -809,8 +809,9 @@ button#fifth {
   font-size: 18px;
 }
 .card {
-  width: 600px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
+  
   margin: 0 auto;
   padding: 0;
   border-radius: 10px;
@@ -833,7 +834,7 @@ button#fifth {
 
 .card-body {
   overflow: auto;
-  width: 600px;
+  width: 100%;
   height: 500px;
 }
 #bookmarkBtn {
@@ -879,7 +880,29 @@ button#fifth {
   .not_auth h6{
     margin-top: 5px;
   }
-  
+  .seeProfile__content{
+    width: 100%;
+    margin-top: 1rem;
+  }
+  #nickname{
+    font-size: 20px;
+  }
+  .cancelBtn{
+    margin: 0 40px;
+  }
+  .customer_table th{
+    padding: 0;
+    vertical-align: inherit;
+  }
+  .customer_table td{
+   padding: 4px;
+  }
+  #profilebtn1 {
+    margin: 0 -5px;
+}
+  #profilebtn1 {
+    margin: 0 -5px;
+  }
   #infoBtn{
     width: 120px;
   }
