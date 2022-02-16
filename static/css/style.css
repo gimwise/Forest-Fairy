@@ -5,8 +5,7 @@ body {
 }
 
 * {
- /* font-family:  'Gamja Flower', cursive; */
-
+  /* font-family:  'Gamja Flower', cursive; */
 }
 img {
   -webkit-user-select: none;
@@ -207,6 +206,7 @@ button#fifth {
   color: #1cc979;
   text-decoration: none;
 }
+
 .nav-item {
   margin: 5px 0px;
 }
@@ -214,11 +214,12 @@ button#fifth {
   border: none;
 }
 .navbar > .container-fluid {
-  padding: 7px 70px;
+  padding: 2vh 6vw;
 }
 #navbar {
   padding: 0%;
   z-index: 2;
+  background-color: #1cc979;
 }
 .navd {
   width: 40vw;
@@ -234,12 +235,13 @@ button#fifth {
 .n li {
   float: left;
 }
-.nav-item a {
-  color: rgb(66, 66, 66);
+
+.nav-item > a {
+  color: white;
   size: 20px;
 }
-.nav-item a:hover {
-  color: #1cc979;
+.dropdown-item {
+  color: rgb(66, 66, 66);
   size: 20px;
 }
 .logo {
@@ -705,8 +707,8 @@ button#fifth {
   background-color: white;
 }
 .intro_container2 text {
- /* font-family: 'Gaegu', cursive; */
-   font-size: 20px;
+  /* font-family: 'Gaegu', cursive; */
+  font-size: 20px;
 }
 .intro_wrap3 {
   width: 100vw;
@@ -887,23 +889,22 @@ button#fifth {
     padding-top: 4rem;
     height: 15rem;
   }
-  .intro_container2{
+  .intro_container2 {
     width: 100%;
   }
-  .intro_container1 h1{
+  .intro_container1 h1 {
     font-size: 40px;
     margin: 10px;
   }
-  .intro_container1 h6{
+  .intro_container1 h6 {
     font-size: 17px;
   }
-  .intro_container3 p{
+  .intro_container3 p {
     font-size: 30px;
     margin: 15px;
   }
-  .intro_register_box{
+  .intro_register_box {
     margin-top: 30px;
-
   }
   .intro_register {
     width: 100vw;
