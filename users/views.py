@@ -43,7 +43,6 @@ def editProfile(request):
 
 editPassword = PasswordChangeView.as_view()
 
-@csrf_exempt
 def join(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
