@@ -12,7 +12,7 @@
     <div class="info_container">
         <a href="{% url 'toilet:edit' toilet.id %}">수정</a>
         <div class="sub">
-            <h1>"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
+            <h1 id="name">"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
                 <img src="{% static 'img/fairy.png' %}">
             </h1><br>
 
@@ -144,4 +144,8 @@
         
     </div>
 
+    <script>
+        let place=document.getElementById('name').innerText;
+        localStorage.setItem("tname",JSON.stringify(place));
+    </script>
 {% endblock %}
