@@ -363,11 +363,11 @@ button#fifth {
   height: 93vh;
 }
 #menu_wrap {
+  width: 28%;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 250px;
   margin: 10px 0 30px 10px;
   padding: 5px;
   overflow-y: auto;
@@ -842,11 +842,26 @@ button#fifth {
 
 @media (max-width: 767px)
 {
+  #menu_wrap{
+    width: 95%;
+    height: 40%;
+  }
   .login_container{
     width: 100%;
   }
   .join_container{
   width: 100%;
+  }
+  #tfinfo_form{
+    width: 100%;
+    height: 45rem;
+    margin-top: 1rem;
+  }
+  .tinfo-icon img{
+    width: 80px;
+  }
+  .toilet-info1{
+    margin-top: 2rem;
   }
   .info_container{
     width: 100%;
