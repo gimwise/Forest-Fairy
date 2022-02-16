@@ -10,7 +10,6 @@
         {% endfor %}
     {% endif %}
     <div class="info_container">
-        <a href="{% url 'toilet:edit' toilet.id %}">수정</a>
         <div class="sub">
             <h1>"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
                 <img src="{% static 'img/fairy.png' %}">
@@ -138,10 +137,10 @@
                 {% endif %}
             </form>
         </div>
+            <a class="btn btn-success" id="infoBtnn" href="{% url 'toilet:edit' toilet.id %}">수정</a>
         </div>
 
 
-        
     </div>
 
 {% endblock %}
