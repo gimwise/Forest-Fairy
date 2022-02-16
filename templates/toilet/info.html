@@ -55,13 +55,13 @@
             <div class="badge_container">
                 {% if toilet.tpassword == True %}
                     <img src="{% static 'img/badge/pw.png' %}">
-                    <text>비밀번호</text>
+                    <text>잠금</text>
                 {% elif toilet.tpassword == False %}
                     <img src="{% static 'img/badge/pw_N.png' %}">
-                    <text id="biget_x">비밀번호</text>
+                    <text id="biget_x">잠금</text>
                 {% else %}
                     <img src="{% static 'img/badge/question.png' %}">
-                    <text id="biget_xx">비밀번호<BR>정보가 없음</text>
+                    <text id="biget_xx">잠금<BR>정보가 없음</text>
                 {% endif %}
             </div>
             
@@ -135,9 +135,9 @@
             <form action="/addBookmark/{{ toilet.id }}/" method="post">
                 {% csrf_token %}
                 {% if bookmark_exist == None%}
-                    <input class="btn btn-success" id="doneBtn" type="submit" value="북마크 등록">
+                    <input class="btn btn-success" id="infoBtn" type="submit" value="북마크 등록">
                 {% else %}
-                    <input class="btn btn-danger" id="doneBtn" type="submit" value="북마크 취소">
+                    <input class="btn btn-danger" id="infoBtn" type="submit" value="북마크 취소">
                 {% endif %}
             </form>
         </div>
