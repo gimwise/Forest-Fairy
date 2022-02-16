@@ -363,7 +363,7 @@ button#fifth {
   height: 93vh;
 }
 #menu_wrap {
-  width: 28%;
+  width: 20%;
   position: absolute;
   top: 0;
   left: 0;
@@ -844,7 +844,7 @@ button#fifth {
 {
   #menu_wrap{
     width: 95%;
-    height: 40%;
+    height: 52%;
   }
   .login_container{
     width: 100%;
