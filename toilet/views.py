@@ -81,8 +81,8 @@ def add(request):
                 toilet.tlat = request.POST["tlat"]
                 toilet.tlong = request.POST["tlong"]
                 toilet.tlocation = request.POST["tlocation"]
-                if request.POST.get('ttype') != None:
-                    toilet.ttype = request.POST.get('ttype')
+                # if request.POST.get('ttype') != None:
+                #     toilet.ttype = request.POST.get('ttype')
                 toilet.tpublic = toptions(request.POST.get('tpublic'))
                 toilet.tpassword = toptions(request.POST.get('tpassword'))
                 toilet.tpaper = toptions(request.POST.get('tpaper'))
