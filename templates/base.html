@@ -36,15 +36,12 @@
                   <div class="navd collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="n">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'toilet:home' %}">home</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'toilet:intro' %}">소개</a>
                     </li>
                     <li class="nav-item dropdown">
                       
                         {% if user.is_authenticated %}
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">프로필</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ user.nickname }} 님</a>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">내정보</a></li>
                         <li><a class="dropdown-item" href="{% url 'toilet:myComments' %}">내가쓴리뷰</a></li>
