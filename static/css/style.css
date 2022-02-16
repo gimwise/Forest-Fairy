@@ -4,6 +4,10 @@ body {
   height: 100%;
 }
 
+* {
+ /* font-family:  'Gamja Flower', cursive; */
+
+}
 img {
   -webkit-user-select: none;
 }
@@ -685,7 +689,7 @@ button#fifth {
   padding: 0px auto;
 }
 .intro_container2 {
-  width: 50rem;
+  width: 45rem;
   padding-top: 2rem;
   padding-bottom: 0rem;
   padding-left: 2rem;
@@ -699,8 +703,8 @@ button#fifth {
   background-color: white;
 }
 .intro_container2 text {
-  font-family: Georgia, "Malgun Gothic", serif;
-  font-size: 20px;
+ font-family: 'Gaegu', cursive;
+   font-size: 20px;
 }
 .intro_wrap3 {
   width: 100vw;
@@ -709,6 +713,7 @@ button#fifth {
   justify-content: center;
   align-items: center;
 }
+
 .intro_container3 {
   width: 100vw;
   height: auto;
@@ -828,4 +833,36 @@ button#fifth {
 }
 #bookmarkBtn {
   width: 150px;
+}
+
+
+@media (max-width: 767px)
+{
+  .intro_container1{
+    padding-top: 4rem;
+    height: 15rem;
+  }
+  .intro_container2{
+    width: 100%;
+  }
+  .intro_container1 h1{
+    font-size: 40px;
+    margin: 10px;
+  }
+  .intro_container1 h6{
+    font-size: 17px;
+  }
+  .intro_container3 p{
+    font-size: 30px;
+    margin: 15px;
+  }
+  .intro_register_box{
+    margin-top: 30px;
+
+  }
+  .intro_register {
+    width: 100vw;
+    display: grid;
+    justify-content: center;
+  }
 }
