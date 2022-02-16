@@ -24,19 +24,19 @@
                 </label>
             </div>
             <div>
-                <label class="tinfo-title">비밀번호</label>
+                <label class="tinfo-title">잠금</label>
                 <label for="tpassword" class='tinfo-icon' id="tpasswordBtn">
                     <img id="tps-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label class="tinfo-title">남여분리</label>
+                <label class="tinfo-title">남녀분리</label>
                 <label for="tpublic" class='tinfo-icon' id="tpublicBtn">
                     <img id="tpublic-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
             </div>
             <div>
-                <label class="tinfo-title">좌변기</label>
+                <label class="tinfo-title ttype-title">변기 종류</label>
                 <label for="ttype" class='tinfo-icon' id="ttypeBtn">
                     <img id="ttype-img" src="{% static 'img/badge/question.png' %}" alt="">
                 </label>
@@ -60,7 +60,7 @@
     // 제목
     const title = document.getElementById('tname');
     const tname = JSON.parse(localStorage.getItem("tname"));
-    title.innerHTML = `${tname}의 화장실 정보를 입력해주세요.`;
+    title.innerHTML = `${tname} 정보를 입력해주세요.`;
 
     // 클릭한 마커의 위도, 경도 정보 받아옴
     result = JSON.parse(localStorage.getItem("placeLocation"));
@@ -166,20 +166,27 @@
             tpublicImg.src = tpublicFiles[1];
         }
     });
+
+    ttypeTitle=document.querySelector(".ttype-title")
+
     ttypeBtn.addEventListener("click", () => {
         let currentOption = ttypeInput.options.selectedIndex;
         if (currentOption == 2) {
             ttypeInput.options.selectedIndex = 0;
+            ttypeTitle.innerText = "변기 종류"
             ttypeImg.src = ttypeFiles[0];
 
         }
         else if (currentOption == 1) {
             ttypeInput.options.selectedIndex++;
+            ttypeTitle.innerText = "양변기"
             ttypeImg.src = ttypeFiles[2];
         }
         else {
             ttypeInput.options.selectedIndex++;
+            ttypeTitle.innerText = "좌변기"
             ttypeImg.src = ttypeFiles[1];
+
         }
     });
 
