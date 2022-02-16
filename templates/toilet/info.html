@@ -9,6 +9,7 @@
             <div class="error_messages"></div>
         {% endfor %}
     {% endif %}
+    <section class="bgsection bg-light">
     <div class="info_container">
         <div class="sub">
             <h1 id="name">"{{ toilet.tname }}" <text style="font-size: 25px;">의 화장실</text> 
@@ -169,9 +170,12 @@
 
 
     </div>
+</section>
+
 
     <script>
         let place=document.getElementById('name').innerText;
         localStorage.setItem("tname",JSON.stringify(place));
     </script>
+
 {% endblock %}
