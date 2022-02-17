@@ -1,2 +1,2 @@
-web: gunicorn Forest-Fairy.wsgi --log-file -
+web: gunicorn config.wsgi --log-file -
 
