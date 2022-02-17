@@ -503,11 +503,11 @@ button#fifth {
   justify-content: center;
 }
 .seeProfile__content {
-  padding: 50px 35px 50px 35px;
+  padding: 50px 5px 50px 5px;
   position: relative;
   justify-content: center;
   border-radius: 10px;
-  width: 450px;
+  width: 100%;
   margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -543,7 +543,7 @@ button#fifth {
   margin-bottom: 3rem;
 }
 #profilebtn1 {
-  margin: 0 45px;
+  margin: 0 0 0 28px;
 }
 
 .editInput {
@@ -699,7 +699,7 @@ button#fifth {
   padding-left: 2rem;
   padding-right: 2rem;
   float: none; /* Added */
-  margin-top: 70px;
+  margin-top: 0;
   margin-bottom: 10px; /* Added */
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   position: relative;
@@ -844,7 +844,7 @@ button#fifth {
 {
   #menu_wrap{
     width: 95%;
-    height: 40%;
+    height: 33%;
   }
   .login_container{
     width: 100%;
@@ -887,13 +887,13 @@ button#fifth {
   }
   .intro_container1{
     padding-top: 4rem;
-    height: 15rem;
+    height: 12rem;
   }
   .intro_container2 {
     width: 100%;
   }
   .intro_container1 h1 {
-    font-size: 40px;
+    font-size: 35px;
     margin: 10px;
   }
   .intro_container1 h6 {
