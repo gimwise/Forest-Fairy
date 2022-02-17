@@ -681,7 +681,7 @@ button#fifth {
   border-color: #1cc979;
 }
 .intro_container1 h6 {
-  margin-left: 15px;
+  margin-left: 65px;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 3px;
@@ -855,6 +855,21 @@ button#fifth {
 }
 
 
+.soupia_people{
+  width: 100vw;
+  height: 12vw;
+  text-align: center;
+  border: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+.soupia_people text{
+  margin: 30px auto;
+  font-size: 18px;
+}
 @media (max-width: 767px)
 {
   #menu_wrap{
@@ -917,6 +932,10 @@ button#fifth {
    #infoBtnn{
     width: 120px;
   }
+  .intro_container1 h1 img {
+    width: 45px;
+    margin: 0 0 50px -5px;
+  }
   .intro_container1{
     padding-top: 4rem;
     height: 12rem;
@@ -930,6 +949,7 @@ button#fifth {
   }
   .intro_container1 h6 {
     font-size: 17px;
+    margin: -25px 0 10px 85px;
   }
   .intro_container3 p {
     font-size: 30px;
