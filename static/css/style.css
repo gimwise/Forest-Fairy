@@ -3,10 +3,12 @@ body {
   width: 100%;
   height: 100%;
 }
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@300;400&family=Gamja+Flower&family=Hi+Melody&family=Jua&family=Nanum+Brush+Script&family=Nanum+Myeongjo&family=Stylish&display=swap');
 
 * {
-  /* font-family:  'Gamja Flower', cursive; */
+  font-family: 'Stylish', sans-serif;
 }
+
 img {
   -webkit-user-select: none;
 }
@@ -195,6 +197,12 @@ button#fifth {
 }
 
 /*------------------------------------------------*/
+.navbar-brand{
+  font-size: 2rem;
+}
+.nav-link{
+  font-size: 20px;
+}
 .navbar-toggler:active,
 .navbar-toggler:focus {
   box-shadow: none !important;
@@ -215,8 +223,8 @@ button#fifth {
   border: none;
 }
 .navbar > .container-fluid {
-  padding: 2vh 6vw;
-}
+    padding: 1vh 3vw
+  }
 #navbar {
   padding: 0%;
   z-index: 2;
@@ -253,8 +261,8 @@ button#fifth {
 }
 
 .log-img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  margin-right: 10px;
 }
 
 .toilet-info1 {
@@ -504,11 +512,11 @@ button#fifth {
   justify-content: center;
 }
 .seeProfile__content {
-  padding: 50px 5px 50px 5px;
+  padding: 50px 35px 50px 35px;
   position: relative;
   justify-content: center;
   border-radius: 10px;
-  width: 100%;
+  width: 450px;
   margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -544,9 +552,11 @@ button#fifth {
   margin-bottom: 3rem;
 }
 #profilebtn1 {
-  margin: 0 0 0 28px;
+  margin: 0 10px;
 }
-
+.profilebtns{
+  display: flex;
+  justify-content: center;}
 .editInput {
   border: none;
 }
@@ -556,7 +566,11 @@ button#fifth {
 }
 
 .cancelBtn {
-  margin: 0 85px;
+  margin: 0 10px;
+}
+.editProfile{
+  display: flex;
+  justify-content: center;
 }
 .passwords {
   display: flex;
@@ -636,7 +650,7 @@ button#fifth {
 .not_auth h6 {
   margin: 25px auto;
   text-align: center;
-  margin-top: -30px;
+  margin-top: 0px;
   margin-bottom: 50px;
 }
 
@@ -875,7 +889,8 @@ button#fifth {
   .ratings button {
   background-color: white;
   border: none;
-  }
+  margin: 0;
+}
   .not_auth h6{
     margin-top: 5px;
   }
@@ -886,9 +901,7 @@ button#fifth {
   #nickname{
     font-size: 20px;
   }
-  .cancelBtn{
-    margin: 0 40px;
-  }
+
   .customer_table th{
     padding: 0;
     vertical-align: inherit;
@@ -896,12 +909,8 @@ button#fifth {
   .customer_table td{
    padding: 4px;
   }
-  #profilebtn1 {
-    margin: 0 -5px;
-}
-  #profilebtn1 {
-    margin: 0 -5px;
-  }
+
+  
   #infoBtn{
     width: 120px;
   }
@@ -933,5 +942,8 @@ button#fifth {
     width: 100vw;
     display: grid;
     justify-content: center;
+  }
+  #bookmarkBtn {
+    width: 4rem;
   }
 }
