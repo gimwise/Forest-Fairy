@@ -205,6 +205,7 @@ button#fifth {
 .nav-logo {
   color: #1cc979;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .nav-item {
@@ -363,7 +364,7 @@ button#fifth {
   height: 93vh;
 }
 #menu_wrap {
-  width: 28%;
+  width: 20%;
   position: absolute;
   top: 0;
   left: 0;
@@ -878,7 +879,29 @@ button#fifth {
   .not_auth h6{
     margin-top: 5px;
   }
-  
+  .seeProfile__content{
+    width: 100%;
+    margin-top: 1rem;
+  }
+  #nickname{
+    font-size: 20px;
+  }
+  .cancelBtn{
+    margin: 0 40px;
+  }
+  .customer_table th{
+    padding: 0;
+    vertical-align: inherit;
+  }
+  .customer_table td{
+   padding: 4px;
+  }
+  #profilebtn1 {
+    margin: 0 -5px;
+}
+  #profilebtn1 {
+    margin: 0 -5px;
+  }
   #infoBtn{
     width: 120px;
   }
