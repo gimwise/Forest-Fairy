@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os,json
 import dj_database_url
-import django_heroku
 
-django_heroku.settings(locals())
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 
