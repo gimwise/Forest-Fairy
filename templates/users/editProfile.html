@@ -29,8 +29,10 @@
                             <td class="content">{{ form.email }}</td>
                         </tr>
                     </table>
-                    <a class="btn btn-success cancelBtn" href="{% url 'users:profile' user.id %}">취소</a>
-                    <button class="btn btn-success ">완료</button>
+                    <div class="editProfile">
+                        <a class="btn btn-success cancelBtn" href="{% url 'users:profile' user.id %}">취소</a>
+                        <button class="btn btn-success cancelBtn">완료</button>
+                    </div>
                 </form>
             </div>
         </div>
