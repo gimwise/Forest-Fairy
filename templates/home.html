@@ -5,7 +5,9 @@
 <title>숲의 요정, 수피아</title>
 
 {% endblock %}
-
+{% block script %}
+    <script type="text/javascript" src={{ api_key }}></script>
+{% endblock %}
 {% block content %}
 <div>
     {% for s in score %}

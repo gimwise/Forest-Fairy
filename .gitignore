@@ -4,6 +4,7 @@
 secrets.json
 .DS_Store
 
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json

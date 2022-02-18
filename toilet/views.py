@@ -11,7 +11,7 @@ from django.db.models import Avg
 from django.http import HttpResponse, JsonResponse
 import json
 from django.contrib import messages
-
+from django.conf import settings
 # Create your views here.
 
 
@@ -75,7 +75,10 @@ def home(request):
 
         toilets.append(dict)
     toilet_json = json.dumps(toilets)
-    context = {'toilet_list': toilet_json}
+    context = {
+        'toilet_list': toilet_json,
+        'api_key' : settings.KAKAO_MAP_KEY
+    }
     return render(request, 'home.html', context)
 
 def toptions(answer):
@@ -132,8 +135,8 @@ def edit(request, id):
             return redirect('/'+str(post.pk))
     else:
         form = ToiletForm()
-        context = {'form': form}
-        return render(request, 'toilet/edit.html', context)
+    context = {'form': form}
+    return render(request, 'toilet/edit.html', context)
 
 
 def info(request, id):
