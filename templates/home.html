@@ -88,12 +88,8 @@
 
     let jsonPositions = [];
 
-    // json 형식으로 화장실 정보 불러와서 마커 생성 및 이벤트 등록
-    $.ajax({
-        url: "{% url 'toilet:getJson' %}",
-        dataType: "json",
-        success:
-            function (positions) {
+    let positions = JSON.parse("{{ toilet_list | escapejs }}")
+
                 for (let i = 0; i < positions.length; i++) {
                     jsonPositions.push(positions[i]);
                     // 마커 이미지의 이미지 크기
@@ -150,8 +146,7 @@
                 }
                 // 클러스터러에 마커들을 추가합니다
                 clusterer.addMarkers(cmarkers);
-            }
-    })
+
     kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
         // 현재 지도 레벨에서 1레벨 확대한 레벨
         var level = map.getLevel() - 1;

@@ -54,9 +54,28 @@ def myComments(req):
     return render(req, 'toilet/myComments.html', {'commented_user':commented_user})
 
 def home(request):
-    toilet_list = User.objects.all()
+    toilet_list = ToiletInfo.objects.all()
+    toilets = []
+    for toilet in toilet_list:
+        dict = {
+            'pk': toilet.id,
+            'tname': toilet.tname,
+            'tlocation': toilet.tlocation,
+            'tlat': toilet.tlat,
+            'tlong': toilet.tlong,
+            'tnumber': toilet.tnumber,
+            'topen': toilet.topen,
+            'tbidget': toilet.tbidget,
+            'tpaper': toilet.tpaper,
+            'tpassword': toilet.tpassword,
+            'tpublic': toilet.tpublic,
+            'ttype': toilet.ttype,
+            'avg': toilet.comment_set.aggregate(avg=Avg('score'))
+        }
 
-    context = {'toilet_list': toilet_list}
+        toilets.append(dict)
+    toilet_json = json.dumps(toilets)
+    context = {'toilet_list': toilet_json}
     return render(request, 'home.html', context)
 
 def toptions(answer):
