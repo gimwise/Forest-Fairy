@@ -51,10 +51,10 @@
 
 <script type="text/javascript">
 
+    let positions = JSON.parse("{{ toilet_list | escapejs }}")
+
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         result = JSON.parse(localStorage.getItem("reLocate"));
-    //lat = result.Ma
-    //lng = result.La
 
     mapOption = {
         center: new kakao.maps.LatLng(35.83186130932451, 128.7585415756756), // 지도의 중심좌표
@@ -87,8 +87,6 @@
     let cmarkers = [];
 
     let jsonPositions = [];
-
-    let positions = JSON.parse("{{ toilet_list | escapejs }}")
 
                 for (let i = 0; i < positions.length; i++) {
                     jsonPositions.push(positions[i]);
