@@ -53,11 +53,11 @@
 
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         result = JSON.parse(localStorage.getItem("reLocate"));
-    //lat = result.Ma
-   // lng = result.La
+    lat = result.Ma
+    lng = result.La
 
     mapOption = {
-        center: new kakao.maps.LatLng(35.83186130932451, 128.7585415756756), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 
@@ -66,9 +66,9 @@
     map.setMaxLevel(5);
 
     var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 5 // 클러스터 할 최소 지도 레벨 
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 5 // 클러스터 할 최소 지도 레벨
     });
 
     // 마커 이미지 주소
@@ -442,48 +442,8 @@
     const currentMarker = "{% static 'img/person.png' %}";
     let imageSize = new kakao.maps.Size(60, 60);
 
-    let gps_use = null;
-    let gps_lat = null;
-    let gps_lng = null;
-    let gps_position;
-
-    //gps_check();
-
-    function gps_check(){
-        if(navigator.geolocation){
-            let options = {timeout:60000};
-            navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
-        }else{
-            alert("GPS 추적이 불가능합니다.");
-            gps_use = false;
-        }
-    }
-
-    function errorHandler(error){
-        if(error.code == 1){
-            alert("접근 차단");
-        }else if(err.code == 2){
-            alert("위치를 반환할 수 없습니다.");
-        }
-        gps_use = false;
-    }
-
-    function showLocation(position){
-        gps_use = true;
-        gps_lat = position.coords.latitude;
-        gps_lng = position.coords.longitude;
-    }
-
     function locationLoadSuccess(pos) {
         // 현재 위치 받아오기
-        if(gps_use){
-            let currentPos = new kakao.maps.LatLng(gps_lat, gps_lng);
-
-            // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
-            map.panTo(currentPos);
-        }
-
-
         var currentPos = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
         // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
@@ -501,8 +461,6 @@
         marker.setMap(map);
     };
 
-
-
     function locationLoadError(pos) {
         alert('위치 정보를 가져오는데 실패했습니다.');
     };
@@ -517,15 +475,7 @@
         removeAllChildNods(listEl);
         removeAllChildNods(paginationEl);
 
-        if(navigator.geolocation){
-            let options = {timeout : 60000};
-            navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
-        }
-        else{
-            alert('위치 추척 불가능');
-            gps_use = false;
-        }
-
+        navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
     };
 
     window.addEventListener("load", function (event) {
