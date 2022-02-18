@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-{% block script %}
-    <script>
-        let positions = JSON.parse("{{ toilet_list | escapejs }}")
-    </script>
-{% endblock %}
+
 <title>숲의 요정, 수피아</title>
 
 {% endblock %}
@@ -45,16 +41,20 @@
                 <button type="button" id="currentPos" class="btn btn-success ml-3 p-1" style="height: 30px; width: 80%;" onclick="getCurrentPosBtn()">내 위치로 이동</button>
             </div>
             <ul id="placesList"></ul>
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
         </div>
         <hr>
 
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
+
     </div>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
+
+    let positions = JSON.parse("{{ toilet_list | escapejs }}")
+
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         result = JSON.parse(localStorage.getItem("reLocate"));
 

@@ -1,7 +1,5 @@
-html,
-body {
-  width: 100%;
-  height: 100%;
+body{
+  display: block;
 }
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@300;400&family=Gamja+Flower&family=Hi+Melody&family=Jua&family=Nanum+Brush+Script&family=Nanum+Myeongjo&family=Stylish&display=swap');
 
@@ -659,25 +657,21 @@ button#fifth {
   width: 100vw;
   justify-content: center;
   align-items: center;
+  display:flex;
+  flex-direction: column;
 }
 .intro_wrap1 {
   width: 100vw;
-  height: auto;
-  display: flex;
-  justify-content: center;
+  height : 20rem;
+  padding: 20px 0;
+  display:flex;
   align-items: center;
-  padding: 20px auto;
+  justify-content: center;
   background-color: #1cc979;
   box-shadow: 0 6px 20px rgb(0 0 0 / 25%), 0 5px 15px rgba(0, 0, 0, 0.22);
 }
 .intro_container1 {
   width: 30rem;
-  height: 20rem;
-  padding-top: 6rem;
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-bottom: 10px; /* Added */
-  position: relative;
   border-color: #1cc979;
 }
 .intro_container1 h6 {
@@ -702,10 +696,9 @@ button#fifth {
   width: 100vw;
   margin-top: 30px;
   height: auto;
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px auto;
 }
 .intro_container2 {
   width: 45rem;
@@ -727,21 +720,19 @@ button#fifth {
 }
 .intro_wrap3 {
   width: 100vw;
-  height: 30vw;
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .soupia{
+  padding : 20px 0;
   width: 100vw;
-  height: auto;
-  display: grid;
   justify-content: center;
   align-items: center; 
 }
 .soupia_people{
   width: 100vw;
-  height: auto;
   text-align: center;
   border: none;
   background-color: white;
@@ -749,11 +740,10 @@ button#fifth {
   align-items: center;
   justify-content: center;
   color: black;
-    float: none; /* Added */
-    position: relative;
+  float: none; /* Added */
+  position: relative;
 }
 .soupia_people text{
-  margin: 30px auto;
   font-size: 18px;
 }
 .contact_icon{
@@ -763,7 +753,6 @@ button#fifth {
 }
 .intro_container3 {
   width: 100vw;
-  height: auto;
   padding-top: 2rem;
   padding-bottom: 4rem;
   float: none; /* Added */
@@ -815,13 +804,6 @@ button#fifth {
   transform: translate(200%, -50%);
   text-align: center;
   margin-bottom: -30px;
-}
-.intro_wrap4 {
-  width: 100vw;
-  height: 30vw;
-  display: grid;
-  justify-content: center;
-  align-items: center;
 }
 .intro_container4 {
   width: 100vw;
@@ -987,7 +969,9 @@ button#fifth {
   }
   .intro_register {
     width: 100vw;
-    display: grid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
   }
   #bookmarkBtn {
