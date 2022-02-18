@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
 
+secrets.json
+.DS_Store
 
 ### VisualStudioCode ###
 .vscode/*
@@ -28,8 +30,8 @@
 *.pyc
 __pycache__/
 local_settings.py
-# db.sqlite3
-#db.sqlite3-journal
+ db.sqlite3
+db.sqlite3-journal
 media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/

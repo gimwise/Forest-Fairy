@@ -1,5 +1,5 @@
 from operator import truediv
-from tkinter.tix import TixSubWidget
+#from tkinter.tix import TixSubWidget
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from django.contrib.auth.models import User

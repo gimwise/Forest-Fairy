@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
 from users.forms import UserForm, CustomPasswordChangeForm, CustomUserChangeForm
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -43,6 +44,7 @@ def editProfile(request):
 
 editPassword = PasswordChangeView.as_view()
 
+@method_decorator(csrf_exempt)
 def join(request):
     if request.method == 'POST':
         form = UserForm(request.POST)

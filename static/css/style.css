@@ -882,7 +882,20 @@ button#fifth {
   width: 150px;
 }
 
-
+.soupia_people{
+  width: 100vw;
+  height: 20vw;
+  text-align: center;
+  border: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+.soupia_people text{
+  font-size: 18px;
+}
 
 @media (max-width: 767px)
 {
@@ -979,5 +992,8 @@ button#fifth {
   }
   #bookmarkBtn {
     width: 4rem;
+  }
+  .soupia_people{
+    display: none;
   }
 }

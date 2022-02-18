@@ -5,11 +5,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         {% block title %}
+        {% endblock %}
+        {% block script %}
         {% endblock %}
         <link rel="shortcut icon" href="{% static 'img/fairy.ico' %}">
         <!-- kakao map api -->
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f99c130daca4a9f0dad14f41b11132c9&libraries=services,clusterer"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a49c441e1fb16064a79b8845c35dded0&libraries=services,clusterer"></script>
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- google font -->

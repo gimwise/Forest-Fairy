@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
+{% block script %}
+    <script>
+        let positions = JSON.parse("{{ toilet_list | escapejs }}")
+    </script>
+{% endblock %}
 <title>숲의 요정, 수피아</title>
 
 {% endblock %}
@@ -29,7 +34,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-control" type="text" id="keyword" size="15" style="margin:auto; width: 70%; height: 30px;" >
+                            <input class="form-control" type="text" value="영남대학교" id="keyword" size="15" style="margin:auto; width: 70%; height: 30px;" >
                             <button class="btn btn-secondary font-weight-bold" type="submit" style="width: 20%; height: 30px;">검색</button>
                         </div>
                     </form>
@@ -50,14 +55,11 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
-
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         result = JSON.parse(localStorage.getItem("reLocate"));
-    lat = result.Ma
-    lng = result.La
 
     mapOption = {
-        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(35.83186130932451, 128.7585415756756), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 
@@ -66,9 +68,9 @@
     map.setMaxLevel(5);
 
     var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 5 // 클러스터 할 최소 지도 레벨 
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 5 // 클러스터 할 최소 지도 레벨
     });
 
     // 마커 이미지 주소
@@ -88,12 +90,6 @@
 
     let jsonPositions = [];
 
-    // json 형식으로 화장실 정보 불러와서 마커 생성 및 이벤트 등록
-    $.ajax({
-        url: "{% url 'toilet:getJson' %}",
-        dataType: "json",
-        success:
-            function (positions) {
                 for (let i = 0; i < positions.length; i++) {
                     jsonPositions.push(positions[i]);
                     // 마커 이미지의 이미지 크기
@@ -150,8 +146,7 @@
                 }
                 // 클러스터러에 마커들을 추가합니다
                 clusterer.addMarkers(cmarkers);
-            }
-    })
+
     kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
         // 현재 지도 레벨에서 1레벨 확대한 레벨
         var level = map.getLevel() - 1;
