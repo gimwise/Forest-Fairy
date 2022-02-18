@@ -79,15 +79,19 @@
 <section id="section">
     {% block content %}
     {% endblock %}
+    <div class="soupia">
         <div class="soupia_people">
             <text><b> <p style="color:#1cc979;">숲의 요정</p>  
                 영남대학교 멋쟁이사자처럼 10기 운영진 ㅣ 김대연 김지혜 박주원 김민솔 조나원<BR>
                 <br></b>
                 <B>CONTACT</B><bR>
-                <b>인스타</b>  likelion_yu<BR>
-                <b>카카오톡</b> <a style="color:black; text-decoration: none;" href= 'https://open.kakao.com/o/sI8wxC0d'>오픈채팅 입장</a>
+                <div class ="contact_icon">
+                    <img style="width:20px;" src="{% static 'img/instagram.png' %}"> likelion_yu<BR>
+                    <img style="width:20px;" src="{% static 'img/kakaotalk.png' %}"><a style="color:black; text-decoration: none;" href= 'https://open.kakao.com/o/sI8wxC0d'> 오픈채팅 입장</a>
+                </div>
             </text>
         </div>
+    </div>
 </section>
 <!-- Optional JavaScript -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

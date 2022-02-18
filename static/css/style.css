@@ -732,7 +732,35 @@ button#fifth {
   justify-content: center;
   align-items: center;
 }
-
+.soupia{
+  width: 100vw;
+  height: auto;
+  display: grid;
+  justify-content: center;
+  align-items: center; 
+}
+.soupia_people{
+  width: 100vw;
+  height: auto;
+  text-align: center;
+  border: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+    float: none; /* Added */
+    position: relative;
+}
+.soupia_people text{
+  margin: 30px auto;
+  font-size: 18px;
+}
+.contact_icon{
+  text-align: left;
+  display: inline-block;
+   margin: 10px auto;
+}
 .intro_container3 {
   width: 100vw;
   height: auto;
@@ -854,7 +882,6 @@ button#fifth {
   width: 150px;
 }
 
-
 .soupia_people{
   width: 100vw;
   height: 20vw;
@@ -869,6 +896,7 @@ button#fifth {
 .soupia_people text{
   font-size: 18px;
 }
+
 @media (max-width: 767px)
 {
   #menu_wrap{
