@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+837+u!6ind!pa
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True) != 'False')
 
 ALLOWED_HOSTS = [
-    'soupia.herokuapp.com/',
+    'soupia.herokuapp.com',
     '127.0.0.1',
 ]
 
