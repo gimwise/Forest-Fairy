@@ -7,10 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <!-- 공유 정보 -->
-        <meta content="숲의 요정, 수피아" property="og:title" />
-        <meta content="//soupia.herokuapp.com/" property="og:url" />
-        <meta content="화장실을 리뷰해보세요" property="og:description" />
-        <meta content="{% static 'img/badge/fairy.png' %}" property="og:image" />
+        <meta property="og:image" content="{% static 'img/fairy.png' %}" />
+        <meta property="og:title" content="숲의 요정, 수피아" />
+        <meta property="og:description" content="화장실을 리뷰하다" />
         {% block title %}
         {% endblock %}
         {% block script %}
